@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --primary-pink: #FF69B4; /* A vibrant pink similar to the heart image */
+    --light-pink: #FFE0F0; /* A lighter shade for backgrounds */
+    --text-color: #333;
+    --white-color: #fff;
+    --button-hover: #FF4081;
+    --border-radius: 10px;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, var(--light-pink), var(--primary-pink));
+    min-height: 100vh;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-decoration: none;
+}
+
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li {
+    margin-right: 30px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--primary-pink);
+}
+
+.btn {
+    background-color: var(--primary-pink);
+    color: var(--white-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+}
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: var(--primary-pink);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background-color: var(--white-color);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--primary-pink);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: #666;
+}
+
+.feature-card .status {
+    background-color: #E0FFE0; /* Light green for "Available" */
+    color: #28A745; /* Dark green for text */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.feature-card .icon {
+    font-size: 3em;
+    color: var(--primary-pink);
+    margin-bottom: 10px;
+}
+
+.feature-card .access-btn {
+    background-color: var(--primary-pink);
+    color: var(--white-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95em;
+    margin-top: 15px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.feature-card .access-btn:hover {
+    background-color: var(--button-hover);
+}
+
+/* Specific styles for the login page */
+.login-container {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #888;
+}
+
+/* For dashboards */
+.dashboard-header {
+    background-color: var(--primary-pink);
+    color: var(--white-color);
+    padding: 15px 30px;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header .role-tag {
+    background-color: var(--white-color);
+    color: var(--primary-pink);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.dashboard-header .logout-btn {
+    background-color: var(--white-color);
+    color: var(--primary-pink);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-header .logout-btn:hover {
+    background-color: var(--button-hover);
+    color: var(--white-color);
+}
