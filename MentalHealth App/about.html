@@ -3,269 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulia - Your Mental Wellness Journey</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to bottom right, #ffdde1, #e642cd); /* Approximating the pink gradient */
-            color: #333;
-            line-height: 1.6;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .navbar .logo {
-            font-size: 2em;
-            font-weight: bold;
-            color: #e91e63; /* Pink from your reference images */
-        }
-        .navbar .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar .nav-links li {
-            margin-left: 30px;
-        }
-        .navbar .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .navbar .nav-links a:hover {
-            color: #e91e63;
-        }
-        .navbar .login-btn {
-            background-color: #e91e63;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-        }
-        .navbar .login-btn img {
-            margin-right: 8px; /* Space between icon and text */
-        }
+    <title>About Us | Tulia</title>
+    <link rel="stylesheet" href="about.css"
 
-        .hero-section {
-            text-align: center;
-            padding: 100px 20px;
-            color: white;
-            /* background: linear-gradient(to bottom right, #ffdde1, #ee9ca7); This is on body now */
-        }
-        .hero-section h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .hero-section p {
-            font-size: 1.2em;
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-        }
-        .hero-section .buttons button {
-            background-color: white;
-            color: #eb2bae;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .hero-section .buttons button:hover {
-            background-color: #e91e63;
-            color: white;
-        }
-
-        .about-us-section {
-            padding: 80px 50px;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            margin-top: 50px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .about-us-section h2 {
-            font-size: 2.5em;
-            color: #e91e63;
-            margin-bottom: 30px;
-        }
-        .about-us-section p {
-            font-size: 1.1em;
-            max-width: 900px;
-            margin: 0 auto 20px auto;
-            color: #555;
-        }
-        .about-us-section .features-preview {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 50px;
-        }
-        .about-us-section .feature-card {
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            text-align: left;
-        }
-        .about-us-section .feature-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 15px;
-            border-radius: 5px; /* Added for a softer look */
-        }
-        .about-us-section .feature-card h3 {
-            color: #e91e63;
-            margin-bottom: 10px;
-            font-size: 1.4em;
-        }
-        .about-us-section .feature-card p {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 0;
-            max-width: none; /* Override general paragraph styling */
-        }
-
-        /* Login Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            padding: 40px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .modal-content h2 {
-            color: #e91e63;
-            font-size: 2em;
-            margin-bottom: 30px;
-        }
-        .modal-content .close-button {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .modal-content .close-button:hover,
-        .modal-content .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .modal-content label {
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
-        }
-        .modal-content select,
-        .modal-content input[type="email"],
-        .modal-content input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 12px 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
-            font-family: 'Playfair Display', serif; /* Apply font to inputs */
-        }
-        .modal-content select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M128%2C192c-2.5%2C0-5-0.9-6.9-2.8L2.8%2C76.9c-3.7-3.7-3.7-9.8%2C0-13.5s9.8-3.7%2C13.5%2C0L128%2C172.5L239.7%2C63.4c3.7-3.7%2C9.8-3.7%2C13.5%2C0s3.7%2C9.8%2C0%2C13.5L134.9%2C189.2C133%2C191.1%2C130.5%2C192%2C128%2C192z%22%2F%3E%3C%2Fsvg%3E'); /* Custom dropdown arrow */
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 12px;
-            padding-right: 30px;
-        }
-        .modal-content button {
-            background-color: #e91e63;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            width: 100%;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content button:hover {
-            background-color: #c2185b;
-        }
-        .modal-content button img {
-            margin-right: 10px;
-        }
-    </style>
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="logo">Tulia</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="contactpage.html">Contact</a></li>
-        </ul>
-        <button class="login-btn" onclick="openLoginModal()">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmktYm94LWFycm93LXJpZ2h0IiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMS40NjQgOC43MDdhLjUuNSAwIDAgMSAwLS43MTVsNS01Yy4zOTItLjM5MiAxLjAyNy0uMzkyIDEuNDE5IDBsLjcwNy43MDdhLjk5Ni45OTYgMCAwIDEgMCAxLjQxOWwtMS42MiAxLjYySDExLjVjLjI3NiAwIC41LjIyNC41LjVzLS4yMjQgLjUtLjUuNWgtNC45M2wxLjYyIDEuNjJhLjk5Ni45OTYgMCAwIDEgMCAxLjQxOWwtLjcwNy43MDdhLjk5Ni45OTYgMCAwIDEtMS40MTkgMGwtNS01eiIvPgogPC9zdmc+" alt="login icon" width="16" height="16">
-            Login
-        </button>
-    </nav>
-
-    <header class="hero-section">
-        <h1>Your Mental Wellness Journey Starts Here</h1>
-        <p>Discover a safe space for healing, growth, and self-care with Tulia's comprehensive mental health platform</p>
-        <div class="buttons">
-            <button>Get Started Today</button>
-            <button>Learn More</button>
+    <div class="navbar">
+        <h1>Tulia</h1>
+         <div class="nav-links">
+           <a href="index.html">Home</a>
+           <a href="about.html">About Us</a>
+           <a href="journal.html">My Journal</a>
+           <a href="moodtracker.html">Mood Tracker</a>
+           <a href="therapist.html">Therapy Connect</a>
+           <a href="contactpage.html">Contact Us</a>
+         </div>
+        <button class="login-button" onclick="showLogin()">Login</button>
+      </div>
+    <section class="hero">
+        <div class="hero-title">About Tulia</div>
+        <div class="hero-desc">
+            Tulia is dedicated to supporting your mental health journey with compassion, innovation, and privacy. Our platform connects you with tools and professionals to help you thrive every day.
         </div>
-    </header>
-
-    <section id="about-us" class="about-us-section">
-        <h2>About Tulia</h2>
-        <p>At Tulia, we believe that mental wellness is a journey, not a destination. Our mission is to provide a supportive and accessible platform where individuals can explore their emotions, connect with qualified therapists, and build resilient mental health habits.</p>
-        <p>We are committed to creating a secure and empathetic environment where you can find the tools and resources you need to thrive. Whether you're looking to understand your moods, document your thoughts, or seek professional guidance, Tulia is here to empower you every step of the way.</p>
-
-        <div class="features-preview">
-            <div class="feature-card">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmktbW9vZC1oZWFydC1maWxsIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik04IDEuMzE0Yy0zLjE0OC01LjQyNi05LjE1OCA1LjYyNC02LjA2NyAxMC42MzdDNC40ODcgMTUuNTA2IDguMTg4IDE3LjEzNCA4IDE5LjMzNmMtLjE4OC0yLjIwOCAzLjUxMy0zLjgyIDYuMDY3LTcuNDA4IDIuNTU0LTcuNDAxLTMuNjczLTE2LjA2My02LjA2Ny0xMC42Mzd6IiBmaWxsPSIjRTMxNzYwIi8+CiAgPHBhdGggZD0iTTggMi44MThhMS40NDQgMS40NDQgMCAwIDEgMS42MTguNzY2bC42NjEgMS4zNzZjLjE0LjI5Mi4zMzYuNTc3LjU5LjgyOGwxLjg0NC45MjJjLjEzMS4wNjUuMjc3LjE2Ni40MjUuMjY1LjE0OS4wOTkuMjg1LjE5MS40MDQuMjY2LjExNy4wNzUuMjIuMTM5LjMwOC4xNjguMDg2LjAyOS4xNjYuMDQxLjIyLjA0MS4wNTUgMCAuMTA3LS4wMDkuMTU4LS4wMzYuMDUxLS4wMjcuMDk1LS4wNjYuMTMyLS4xMzlhLjI1LjI1IDAgMCAwIC4xODktLjQ4NmwtLjU3Mi0uMzk2Yy0uMDYzLS4wNDMtLjEwMi0uMDg4LS4xNDUtLjEzNS0uMDQzLS4wNDctLjA3OS0uMDktLjEyMi0uMTM5LS4wNDQtLjA0OS0uMDg1LS4xMDQtLjExNi0uMTY3Yy0uMDMyLS4wNjMtLjA0Ny0uMTI3LS4wNDctLjE5MnYuMDAyYy0uMDAxLS4wNjUuMDA2LS4xMzQuMDI4LS4yMDZsLjExNy0uNDY5Yy4wNzctLjMwOC4xNTktLjYyNC4yNzktLjk1Mi4xMi0uMzI4LjIyOC0uNjUuMzI0LS45NDQuMDk2LS4yOTQuMTc5LS41NzUuMjQ2LS44MjMuMDctLjI0OC4xMTUtLjQ2Ni4xNTItLjY1NWEuMjUuMjUgMCAwIDAtLjQ4NS0uMDcxbC0uMzA3LjUwNyBjLS4wNjQuMTA2LS4xNDMuMjAyLS4yNTQuMjk0LS4xMTIuMDktLjI0LjE1NS0uMzc5LjE5Mi0uMTM5LjAzNy0uMjg2LjA0MS0uNDMyLjAyMi0uMTQ2LS4wMTktLjI4Ny0uMDUtLjQwNC0uMDg4LS4xMTctLjAzOC0uMjIyLS4wNzgtLjMyMi0uMTI2LS4xLS4wNDgtLjE5LS4xLS4yNzUtLjE1NC0uMDg1LS4wNTQtLjE2LS4xMTEtLjIzLS4xNzctLjA3LS4wNjYtLjEzMi0uMTM0LS4xOC0uMjA5LS4wNDgtLjA3NS0uMDg0LS4xNTUtLjExLS4yMzctLjAyNS0uMDgyLS4wMzgtLjE2Ny0uMDM4LS4yNTJ2LS4wMDJhMS40NjggMS40NjggMCAwIDEtLjIyOS0uNjQzYy0uMTQ1LS42NC0uNzIzLTEuMTc2LTEuNDIxLTEuMjgzLS42OTgtLjEwNy0xLjM2NS4xMjEtMS43OC42NjItLjQxMy41NC0uNTU5IDEuMjY0LS40MDcgMS44NzJhMS41MyAxLjUzIDAgMCAxLS42NTYgLjU1OWMtLjM5OS4xNjctLjg2My4yMjQtMS4zMjMuMTY4LS40NjEtLjA1Ni0uODkyLS4yMTMtMS4xNjctLjM4NC0uMjc1LS4xNzItLjQxMy0uMzY4LS40NjMtLjU5LS4wNS0uMjIxLS4wMzUtLjQ0OC4wMDgtLjY2Yy4wNDItLjIxMy4xMDgtLjQwOC4yMDMtLjU4OS4wOTUtLjE4Mi4yMTItLjM0NC4zNTYtLjQ5Ljc0LS43MTIgMS45MzQtLjk0IDIuOTUtLjU4My41NDQuMTkzLjk2OC41MSAxLjIwNC45MDR6TTggMi44MThhMS40NDQgMS40NDQgMCAwIDEtMS42MTguNzY2bC0uNjYxIDEuMzc2Yy0uMTQuMjkxLS4zMzYuNTc3LS41OS44MjhsLTEuODQ0LjkxOGMtLjEzMS4wNjYtLjI3Ny4xNjctLjQyNS4yNjYtLjE0OS4xLS4yODUuMTkxLS40MDQuMjY2LS4xMTcuMDc1LS4yMjEuMTM4LS4zMDguMTY3LS4wODYuMDMtLjE2Ni4wNDItLjIyLjA0Mi0uMDU2IDAtLjEwNy0uMDA5LS4xNTktLjAzN2MtLjA1MS0uMDI3LS4wOTYtLjA2Ni0uMTMyLS4xMThhLjI1LjI1IDAgMCAwLS4xODktLjQ4N2wuNTcyLS4zOTdjLjA2My0uMDQyLjEwMi0uMDg4LjE0NS0uMTM0LjA0My0uMDQ3LjA3OS0uMDkuMTIyLS4xNDMuMDQ0LS4wNDkuMDg1LS4xMDQuMTE2LS4xNjYuMDMyLS4wNjQuMDQ3LS4xMjcuMDQ3LS4xOTJ2LjAwMmMuMDAxLS4wNjUuMDA2LS4xMzQuMDI4LS4yMDZsLjExNi0uNDdjLjA3OC0uMzA3LjE2LS42MjQuMjc5LS45NTEuMTItLjMyOC4yMjctLjY1LjMyNC0uOTQ0LjA5Ni0uMjk0LjE3OS0uNTc2LjI0Ni0uODI0LjA3LS4yNDguMTE1LS40NjUuMTUyLS42
+    </section>
+    <section class="about-section">
+        <div class="about-title">Our Mission</div>
+        <div class="about-text">
+            We believe everyone deserves access to mental health support. Tulia empowers individuals to track their well-being, connect with therapists, and find a safe space for self-expression. Our mission is to break the stigma, foster resilience, and make mental wellness accessible to all.
+        </div>
+    </section>
+    <section class="team-section">
+        <div class="team-title">Meet the Team</div>
+        <div class="team-list">
+            <div class="team-member">
+                <img class="member-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah">
+                <div class="member-name">Sarah Smith</div>
+                <div class="member-role">Lead Therapist</div>
+                <div class="member-desc">Passionate about holistic care and empowering clients to find their voice.</div>
+            </div>
+            <div class="team-member">
+                <img class="member-avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt="John">
+                <div class="member-name">John Doe</div>
+                <div class="member-role">Product Designer</div>
+                <div class="member-desc">Designs with empathy to create calming, user-friendly experiences.</div>
+            </div>
+            <div class="team-member">
+                <img class="member-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Freshia">
+                <div class="member-name">Freshia Macharia</div>
+                <div class="member-role">Community Manager</div>
+                <div class="member-desc">Building a supportive, inclusive community for all Tulia users.</div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <a href="contactpage.html"><button class="cta-btn">Contact Us</button></a>
+    </section>
+</body>
+</html>
