@@ -3,69 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulia - Patient Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Patient Dashboard | Tulia</title>
+    <link rel="stylesheet" href="patient_dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">Tulia</a>
-        <ul class="navbar-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <main class="container">
-        <div class="dashboard-header">
-            <h1>Your Wellness Dashboard</h1>
-            <span class="role-tag">Patient</span>
-            <a href="login.html" class="logout-btn">Logout</a>
+    <div class="navbar">
+        <h1>Tulia</h1>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="journal page/journal.html">My Journal</a>
+            <a href="moodtracker.html">Mood Tracker</a>
+            <a href="therapist.html">Therapy Connect</a>
+            <a href="contactpage.html">Contact Us</a>
         </div>
-        <p style="text-align: center; font-size: 1.1em; color: #666; margin-bottom: 40px;">
-            Welcome back! Here are your available features and tools.
-        </p>
+        <div class="user-section">
+            <span id="userName">Welcome</span>
+            <button class="logout-btn" onclick="logout()">
+                <i data-lucide="log-out"></i>
+                Logout
+            </button>
+        </div>
+    </div>
 
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-heart"></i></div>
+    <div class="container">
+        <div class="welcome-section">
+            <div class="welcome-card">
+                <div class="welcome-content">
+                    <h2>Welcome back, <span id="userFirstName">Patient</span>! 👋</h2>
+                    <p>Ready to continue your mental wellness journey? Here's what you can do today.</p>
+                </div>
+                <div class="welcome-icon">
+                    <i data-lucide="heart"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card" onclick="navigateTo('journal page/journal.html')">
+                <div class="feature-icon">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <h3>My Journal</h3>
+                <p>Write about your thoughts, feelings, and experiences in your personal digital journal.</p>
+                <div class="feature-action">
+                    <span>Start Writing</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="feature-card" onclick="navigateTo('moodtracker.html')">
+                <div class="feature-icon">
+                    <i data-lucide="trending-up"></i>
+                </div>
                 <h3>Mood Tracker</h3>
-                <div class="status">Available</div>
-                <p>Log your daily mood and emotions</p>
-                <button class="access-btn">Access Feature</button>
+                <p>Track your daily moods and emotions to better understand your mental health patterns.</p>
+                <div class="feature-action">
+                    <span>Track Mood</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-book-open"></i></div>
-                <h3>Personal Journal</h3>
-                <div class="status">Available</div>
-                <p>Write private thoughts and reflections</p>
-                <button class="access-btn">Access Feature</button>
+
+            <div class="feature-card" onclick="navigateTo('therapist.html')">
+                <div class="feature-icon">
+                    <i data-lucide="message-circle"></i>
+                </div>
+                <h3>Therapy Connect</h3>
+                <p>Connect with qualified therapists for professional support and guidance.</p>
+                <div class="feature-action">
+                    <span>Connect Now</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-comments"></i></div>
-                <h3>Therapy Sessions</h3>
-                <div class="status">Available</div>
-                <p>Book anonymous therapy sessions</p>
-                <button class="access-btn">Access Feature</button>
-            </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-calendar-check"></i></div>
-                <h3>Daily Check-ins</h3>
-                <div class="status">Available</div>
-                <p>Complete your wellness check-ins</p>
-                <button class="access-btn">Access Feature</button>
-            </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-language"></i></div>
-                <h3>Change App Language</h3>
-                <div class="status">Available</div>
-                <p>Set your preferred language for the application.</p>
-                <button class="access-btn">Access Feature</button>
+
+            <div class="feature-card" onclick="navigateTo('contactpage.html')">
+                <div class="feature-icon">
+                    <i data-lucide="phone"></i>
+                </div>
+                <h3>Contact Support</h3>
+                <p>Get in touch with our support team for any questions or assistance you need.</p>
+                <div class="feature-action">
+                    <span>Contact Us</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
             </div>
         </div>
-    </main>
+
+        <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="navigateTo('journal page/journal.html')">
+                    <i data-lucide="plus"></i>
+                    New Journal Entry
+                </button>
+                <button class="action-btn" onclick="navigateTo('moodtracker.html')">
+                    <i data-lucide="smile"></i>
+                    Log Today's Mood
+                </button>
+                <button class="action-btn" onclick="navigateTo('therapist.html')">
+                    <i data-lucide="users"></i>
+                    Find Therapist
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="patient_dashboard.js"></script>
 </body>
 </html>
