@@ -1,50 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulia - Login</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login - Tulia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(to bottom, #ff69b4, #c71585);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            position: relative;
+            width: 400px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #c71585;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">Tulia</a>
-        <ul class="navbar-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#features">Features</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-            <li><a href="login.html" class="btn">Login</a></li>
-        </ul>
-    </nav>
 
-    <div class="login-container">
-        <a href="index.html" class="close-btn">&times;</a>
-        <h2>Welcome to Tulia</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="role">Select Your Role</label>
-                <select id="role" name="role" required>
-                    <option value="">Choose your login type</option>
-                    <option value="patient">Patient</option>
-                    <option value="therapist">Therapist</option>
-                    <option value="customer_care">Customer Care</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn login-btn">Login</button>
-        </form>
-    </div>
+<div class="login-container">
+    <h2>Login as:</h2>
+    <form id="loginForm">
+        <label for="userType">Select User Type</label>
+        <select id="userType">
+            <option value="admin">Admin</option>
+            <option value="therapist">Therapist</option>
+            <option value="customerCare">Customer Care</option>
+            <option value="patient">Patient</option>
+        </select>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter Username" required/>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter Password" required/>
+        <button type="submit">Login</button>
+        <div id="errorMessage" class="error-message"></div>
+    </form>
+</div>
 
-    <script src="script.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const userType = document.getElementById('userType').value;
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Simulate authentication check
+        if (username === 'demo' && password === 'demo') {
+            // Redirect based on user type
+            switch (userType) {
+                case 'admin':
+                    window.location.href = 'panel-admin.html';
+                    break;
+                case 'therapist':
+                    window.location.href = 'therapist_portal.html';
+                    break;
+                case 'customerCare':
+                    window.location.href = 'customercare_portal.html';
+                    break;
+                case 'patient':
+                    window.location.href = 'patient_dashboard.html';
+                    break;
+                default:
+                    alert('Unknown user type');
+            }
+        } else {
+            document.getElementById('errorMessage').textContent = 'Invalid credentials';
+        }
+    });
+</script>
+
 </body>
 </html>

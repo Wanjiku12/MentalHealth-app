@@ -1,43 +1,56 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginForm');
+import React, { useState } from 'react';
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent default form submission
+function LoginPopup() {
+  const [show, setShow] = useState(false);
+  const [userType, setUserType] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-            const role = document.getElementById('role').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+  const showLogin = () => setShow(true);
+  const closeLogin = () => setShow(false);
 
-            // In a real application, you would send these credentials to a server
-            // for authentication. For this example, we'll use simple client-side redirection.
-
-            // Basic validation (replace with actual authentication)
-            if (email === '' || password === '') {
-                alert('Please enter both email and password.');
-                return;
-            }
-
-            switch (role) {
-                case 'patient':
-                    window.location.href = 'patient_dashboard.html';
-                    break;
-                case 'therapist':
-                    window.location.href = 'therapist_portal.html';
-                    break;
-                case 'customer_care':
-                    window.location.href = 'customer_care_dashboard.html';
-                    break;
-                case 'admin':
-                    // For admin, we'll just show the customer care dashboard for simplicity
-                    // In a real app, this would lead to a dedicated admin panel
-                    alert('Admin login not fully implemented in this demo. Redirecting to Customer Care Dashboard.');
-                    window.location.href = 'customer_care_dashboard.html';
-                    break;
-                default:
-                    alert('Please select a login role.');
-                    break;
-            }
-        });
+  const login = () => {
+    if (userType) {
+      alert("Redirecting to " + userType + " panel...");
+      closeLogin();
+    } else {
+      alert("Please select a user type");
     }
-});
+  };
+
+  return (
+    <div>
+      <button onClick={showLogin}>Show Login</button>
+      {show && (
+        <>
+          <div className="overlay" onClick={closeLogin}></div>
+          <div className="login-popup">
+            <h3>Login as:</h3>
+            <select value={userType} onChange={e => setUserType(e.target.value)}>
+              <option value="">Select User Type</option>
+              <option value="admin">Admin</option>
+              <option value="therapist">Therapist</option>
+              <option value="customer">Customer Care</option>
+              <option value="patient">Patient</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <button onClick={login}>Login</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default LoginPopup;

@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --primary-pink: #e41e81; /* A vibrant pink similar to the heart image */
+    --light-pink: #FFE0F0; /* A lighter shade for backgrounds */
+    --text-color: #333;
+    --white-color: #fff;
+    --button-hover: #e338a1;
+    --border-radius: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(to bottom, var(--light-pink), var(--primary-pink));
+    min-height: 100vh;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.navbar {
+    display: flex;
+    /* justify-content: space-between; This was pushing logo left and button right */
+    align-items: center;
+    padding: 15px 40px; /* Retained reduced padding for a slightly smaller size */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%; /* Ensure it spans full width */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.navbar .logo {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-decoration: none;
+    margin-right: center; /* Pushes the logo to the far left */
+}
+
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* flex-grow: 1; Removed as it was making links spread out */
+    justify-content: center; /* Centers the actual links within their flex container */
+    flex-basis: auto; /* Allow links to take natural width */
+    margin: 0 auto; /* Auto margins on left/right for centering */
+}
+
+.navbar-links li {
+    margin-right: 30px; /* Increased margin for more spacing, matching screenshot */
+}
+
+.navbar-links li:last-child {
+    margin-right: 0; /* Ensures no extra margin on the last item */
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--primary-pink);
+}
+
+.btn {
+    background-color: var(--primary-pink);
+    color: var(--white-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: auto; /* Pushes the button to the far right */
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+}
+
+.container {
+    width: 90%; /* Fluid width */
+    max-width: 1200px; /* Max width for larger screens */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: var(--primary-pink);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+    /* Gradient applied via JS for dynamic range, or you can keep it here directly */
+    background: linear-gradient(to right, #FF69B4, #FFB6C1);
+}
+
+.hero-section h1 {
+    font-size: 3.5em; /* Responsive font size */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: var(--white-color); /* Ensure hero text is white */
+}
+.hero-section p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    color: var(--white-color); /* Ensure hero text is white */
+}
+.hero-section .buttons button {
+    background-color: white;
+    color: var(--primary-pink);
+    padding: 15px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1em;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.hero-section .buttons button:hover {
+    background-color: var(--primary-pink);
+    color: white;
+}
+
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background-color: var(--white-color);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--primary-pink);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: #666;
+}
+
+.feature-card .status {
+    background-color: #E0FFE0; /* Light green for "Available" */
+    color: #28A745; /* Dark green for text */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.feature-card .icon {
+    font-size: 3em;
+    color: var(--primary-pink);
+    margin-bottom: 10px;
+}
+
+.feature-card .access-btn {
+    background-color: var(--primary-pink);
+    color: var(--white-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95em;
+    margin-top: 15px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.feature-card .access-btn:hover {
+    background-color: var(--button-hover);
+}
+
+/* Specific styles for the login page */
+.login-container {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative; /* For positioning close button */
+}
+
+.login-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    width: calc(100% - 24px); /* Account for padding */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Playfair Display', serif;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M128%2C192c-2.5%2C0-5-0.9-6.9-2.8L2.8%2C76.9c-3.7-3.7-3.7-9.8%2C0-13.5s9.8-3.7%2C13.5%2C0L128%2C172.5L239.7%2C63.4c3.7-3.7%2C9.8-3.7%2C13.5%2C0s3.7%2C9.8%2C0%2C13.5L134.9%2C189.2C133%2C191.1%2C130.5%2C192%2C128%2C192z%22%2F%3E%3C%2Fsvg%3E'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #888;
+}
+
+/* For dashboards */
+.dashboard-header {
+    background-color: var(--primary-pink);
+    color: var(--white-color);
+    padding: 15px 30px;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.dashboard-header h1 {
+    color: var(--white-color);
+    margin: 0;
+    text-align: left; /* Align title left in header */
+    flex-grow: 1; /* Allow it to take available space */
+}
+
+.dashboard-header .role-tag {
+    background-color: var(--white-color);
+    color: var(--primary-pink);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-right: 20px; /* Space from logout button */
+    white-space: nowrap; /* Prevent tag from breaking */
+}
+
+.dashboard-header .logout-btn {
+    background-color: var(--white-color);
+    color: var(--primary-pink);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap; /* Prevent button text from breaking */
+}
+
+.dashboard-header .logout-btn:hover {
+    background-color: var(--button-hover);
+    color: var(--white-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    .navbar .logo {
+        margin-bottom: 10px;
+    }
+    .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .navbar-links li {
+        margin: 5px 0;
+    }
+    .navbar .btn {
+        margin-top: 15px;
+    }
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+    .hero-section .buttons button {
+        padding: 12px 20px;
+        font-size: 1em;
+        margin: 5px;
+    }
+    .container {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .dashboard-header h1 {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .dashboard-header .role-tag,
+    .dashboard-header .logout-btn {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .feature-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+    .feature-card {
+        padding: 20px;
+    }
+    .feature-card .icon {
+        font-size: 2.5em;
+    }
+    .feature-card h3 {
+        font-size: 1.4em;
+    }
+    .feature-card p {
+        font-size: 0.9em;
+    }
+}
