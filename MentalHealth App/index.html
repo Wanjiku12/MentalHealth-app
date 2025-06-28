@@ -37,6 +37,10 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .login-button:hover {
+      background-color: #e91e63;
     }
     .hero {
       text-align: center;
@@ -60,6 +64,10 @@
       border-radius: 12px;
       font-weight: bold;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .get-started:hover {
+      transform: translateY(-2px);
     }
     .features {
       display: grid;
@@ -74,41 +82,14 @@
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
     }
     .feature-card img {
       width: 60px;
       margin-bottom: 15px;
-    }
-    .login-popup {
-      display: none;
-      position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -20%);
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-    .login-popup h3 {
-      margin-bottom: 15px;
-      color: #ff2d92;
-    }
-    .login-popup select, .login-popup button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 999;
     }
   </style>
 </head>
@@ -118,17 +99,17 @@
     <h1>Tulia</h1>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+      <a href="about.html">About Us</a>
       <a href="features.html">Features</a>
       <a href="contactpage.html">Contact</a>
     </div>
-    <button class="login-button" onclick="showLogin()">Login</button>
+    <button class="login-button" onclick="window.location.href='login.html'">Login</button>
   </div>
 
   <div class="hero">
     <h2>Your Mental Wellness Journey Starts Here</h2>
     <p>Discover a safe space for healing, growth, and self-care with Tulia's comprehensive mental health platform</p>
-    <button class="get-started">Get Started Today</button>
+    <button class="get-started" onclick="window.location.href='signup.html'">Get Started Today</button>
   </div>
 
   <div class="features">
@@ -158,43 +139,6 @@
       <p>Switch to your preferred language easily.</p>
     </div>
   </div>
-
-  <!-- Login Popup -->
-  <div class="overlay" id="overlay" onclick="closeLogin()"></div>
-  <div class="login-popup" id="loginBox">
-    <h3>Login as:</h3>
-    <select id="userType">
-      <option value="">Select User Type</option>
-      <option value="admin">Admin</option>
-      <option value="therapist">Therapist</option>
-      <option value="customer">Customer Care</option>
-      <option value="patient">Patient</option>
-    </select>
-    <input type="text" placeholder="Username" />
-    <input type="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-  </div>
-
-  <script>
-    function showLogin() {
-      document.getElementById("loginBox").style.display = "block";
-      document.getElementById("overlay").style.display = "block";
-    }
-    function closeLogin() {
-      document.getElementById("loginBox").style.display = "none";
-      document.getElementById("overlay").style.display = "none";
-    }
-    function login() {
-      const userType = document.getElementById("userType").value;
-      if (userType) {
-        alert("Redirecting to " + userType + " panel...");
-        // Simulate redirect
-        closeLogin();
-      } else {
-        alert("Please select a user type");
-      }
-    }
-  </script>
 
 </body>
 </html>
