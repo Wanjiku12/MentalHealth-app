@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Role | Tulia</title>
+    <link rel="stylesheet" href="role_selection.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="role-card">
+            <div class="header">
+                <h1>Welcome to Tulia!</h1>
+                <p>Please select your role to continue to your personalized dashboard.</p>
+            </div>
+            
+            <div class="role-options">
+                <div class="role-option" onclick="selectRole('patient')">
+                    <div class="role-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>I am a Patient</h3>
+                    <p>Access your journal, mood tracker, and connect with therapists for support on your mental wellness journey.</p>
+                    <div class="features">
+                        <span>📝 Personal Journal</span>
+                        <span>📊 Mood Tracking</span>
+                        <span>💬 Therapist Chat</span>
+                    </div>
+                </div>
+                
+                <div class="role-option" onclick="selectRole('therapist')">
+                    <div class="role-icon">
+                        <i data-lucide="stethoscope"></i>
+                    </div>
+                    <h3>I am a Therapist</h3>
+                    <p>Manage patient records, provide therapy sessions, and support your clients through their mental health journey.</p>
+                    <div class="features">
+                        <span>👥 Patient Records</span>
+                        <span>💬 Chat Sessions</span>
+                        <span>📈 Progress Tracking</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <p>You can change your role later in your account settings.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="role_selection.js"></script>
+</body>
+</html> 
