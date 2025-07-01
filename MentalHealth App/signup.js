@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
+    
+    // Initialize language system
+    if (typeof LanguageManager !== 'undefined') {
+        LanguageManager.init();
+    }
 });
 
 // Toggle password visibility
@@ -45,17 +50,30 @@ function validatePassword(password) {
     };
     
     // Update requirement indicators
-    document.getElementById('length').textContent = requirements.length ? '✅ At least 8 characters long' : '❌ At least 8 characters long';
-    document.getElementById('length').className = requirements.length ? 'valid' : '';
+    const lengthEl = document.getElementById('length');
+    const uppercaseEl = document.getElementById('uppercase');
+    const lowercaseEl = document.getElementById('lowercase');
+    const numberEl = document.getElementById('number');
     
-    document.getElementById('uppercase').textContent = requirements.uppercase ? '✅ At least one capital letter' : '❌ At least one capital letter';
-    document.getElementById('uppercase').className = requirements.uppercase ? 'valid' : '';
+    if (lengthEl) {
+        lengthEl.textContent = requirements.length ? '✅ ' + LanguageManager.get('atLeast8Chars') : '❌ ' + LanguageManager.get('atLeast8Chars');
+        lengthEl.className = requirements.length ? 'valid' : '';
+    }
     
-    document.getElementById('lowercase').textContent = requirements.lowercase ? '✅ At least one lowercase letter' : '❌ At least one lowercase letter';
-    document.getElementById('lowercase').className = requirements.lowercase ? 'valid' : '';
+    if (uppercaseEl) {
+        uppercaseEl.textContent = requirements.uppercase ? '✅ ' + LanguageManager.get('oneCapital') : '❌ ' + LanguageManager.get('oneCapital');
+        uppercaseEl.className = requirements.uppercase ? 'valid' : '';
+    }
     
-    document.getElementById('number').textContent = requirements.number ? '✅ At least one digit' : '❌ At least one digit';
-    document.getElementById('number').className = requirements.number ? 'valid' : '';
+    if (lowercaseEl) {
+        lowercaseEl.textContent = requirements.lowercase ? '✅ ' + LanguageManager.get('oneLowercase') : '❌ ' + LanguageManager.get('oneLowercase');
+        lowercaseEl.className = requirements.lowercase ? 'valid' : '';
+    }
+    
+    if (numberEl) {
+        numberEl.textContent = requirements.number ? '✅ ' + LanguageManager.get('oneDigit') : '❌ ' + LanguageManager.get('oneDigit');
+        numberEl.className = requirements.number ? 'valid' : '';
+    }
     
     // Calculate strength
     const validCount = Object.values(requirements).filter(Boolean).length;
@@ -66,19 +84,19 @@ function validatePassword(password) {
     
     if (validCount === 0) {
         strengthFill.className = 'strength-fill';
-        strengthText.textContent = 'Password strength';
+        strengthText.textContent = LanguageManager.get('passwordStrength');
     } else if (validCount === 1) {
         strengthFill.className = 'strength-fill weak';
-        strengthText.textContent = 'Weak';
+        strengthText.textContent = LanguageManager.get('weak');
     } else if (validCount === 2) {
         strengthFill.className = 'strength-fill fair';
-        strengthText.textContent = 'Fair';
+        strengthText.textContent = LanguageManager.get('fair');
     } else if (validCount === 3) {
         strengthFill.className = 'strength-fill good';
-        strengthText.textContent = 'Good';
+        strengthText.textContent = LanguageManager.get('good');
     } else if (validCount === 4) {
         strengthFill.className = 'strength-fill strong';
-        strengthText.textContent = 'Strong';
+        strengthText.textContent = LanguageManager.get('strong');
     }
     
     return validCount === 4;
@@ -101,6 +119,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
         username: document.getElementById('username').value.trim(),
         email: document.getElementById('email').value.trim(),
         phone: document.getElementById('phone').value.trim(),
+        language: document.getElementById('language').value,
         password: document.getElementById('password').value,
         confirmPassword: document.getElementById('confirmPassword').value,
         terms: document.getElementById('terms').checked
@@ -108,41 +127,41 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     
     // Validate all fields
     if (!formData.firstName || !formData.lastName || !formData.username || 
-        !formData.email || !formData.phone || !formData.password || 
+        !formData.email || !formData.phone || !formData.language || !formData.password || 
         !formData.confirmPassword) {
-        showMessage('Please fill in all fields', 'error');
+        showMessage(LanguageManager.get('pleaseFillAllFields'), 'error');
         return;
     }
     
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-        showMessage('Please enter a valid email address', 'error');
+        showMessage(LanguageManager.get('invalidEmail'), 'error');
         return;
     }
     
     // Validate phone format
     const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
     if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-        showMessage('Please enter a valid phone number', 'error');
+        showMessage(LanguageManager.get('invalidPhone'), 'error');
         return;
     }
     
     // Validate password strength
     if (!validatePassword(formData.password)) {
-        showMessage('Please ensure your password meets all requirements', 'error');
+        showMessage(LanguageManager.get('passwordRequirementsNotMet'), 'error');
         return;
     }
     
     // Check password confirmation
     if (formData.password !== formData.confirmPassword) {
-        showMessage('Passwords do not match', 'error');
+        showMessage(LanguageManager.get('passwordsDoNotMatch'), 'error');
         return;
     }
     
     // Check terms agreement
     if (!formData.terms) {
-        showMessage('Please agree to the Terms of Service and Privacy Policy', 'error');
+        showMessage(LanguageManager.get('agreeToTerms'), 'error');
         return;
     }
     
@@ -153,6 +172,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
         username: formData.username,
         email: formData.email,
         phone: formData.phone,
+        language: formData.language,
         password: formData.password,
         createdAt: new Date().toISOString()
     };
@@ -162,7 +182,10 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     existingUsers.push(userData);
     localStorage.setItem('users', JSON.stringify(existingUsers));
     
-    showMessage('Account created successfully! Redirecting...', 'success');
+    // Store language preference for the application
+    localStorage.setItem('userLanguage', formData.language);
+    
+    showMessage(LanguageManager.get('accountCreatedSuccess'), 'success');
     
     // Redirect to role selection page
     setTimeout(() => {

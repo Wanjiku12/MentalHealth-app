@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
+    
+    // Load saved language preference
+    loadLanguagePreference();
+    
+    // Initialize language system
+    if (typeof LanguageManager !== 'undefined') {
+        LanguageManager.init();
+    }
 });
 
 // Toggle password visibility
@@ -23,6 +31,14 @@ function togglePassword() {
     }
 }
 
+// Load saved language preference
+function loadLanguagePreference() {
+    const savedLanguage = localStorage.getItem('userLanguage');
+    if (savedLanguage) {
+        document.getElementById('language').value = savedLanguage;
+    }
+}
+
 // Sample user data (in a real app, this would come from a database)
 const users = [
     {
@@ -30,14 +46,16 @@ const users = [
         password: 'Patient123!',
         role: 'patient',
         firstName: 'John',
-        lastName: 'Doe'
+        lastName: 'Doe',
+        language: 'en'
     },
     {
         username: 'therapist1',
         password: 'Therapist123!',
         role: 'therapist',
         firstName: 'Dr. Sarah',
-        lastName: 'Smith'
+        lastName: 'Smith',
+        language: 'en'
     }
 ];
 
@@ -47,11 +65,12 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const language = document.getElementById('language').value;
     const remember = document.getElementById('remember').checked;
     
     // Validate inputs
     if (!username || !password) {
-        showMessage('Please fill in all fields', 'error');
+        showMessage(LanguageManager.get('pleaseFillAllFields'), 'error');
         return;
     }
     
@@ -64,14 +83,18 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             username: user.username,
             role: user.role,
             firstName: user.firstName,
-            lastName: user.lastName
+            lastName: user.lastName,
+            language: language
         }));
+        
+        // Store language preference
+        localStorage.setItem('userLanguage', language);
         
         if (remember) {
             localStorage.setItem('rememberedUser', username);
         }
         
-        showMessage('Login successful! Redirecting...', 'success');
+        showMessage(LanguageManager.get('loginSuccess'), 'success');
         
         // Redirect to appropriate dashboard
         setTimeout(() => {
@@ -83,7 +106,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         }, 1500);
         
     } else {
-        showMessage('Invalid username or password', 'error');
+        showMessage(LanguageManager.get('invalidCredentials'), 'error');
     }
 });
 

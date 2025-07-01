@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="signup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
 </head>
-<body>
+<body data-page-title="createAccountTitle">
     <div class="container">
         <div class="signup-card">
             <div class="header">
-                <h1>Create Account</h1>
-                <p>Join Tulia and start your mental wellness journey today.</p>
+                <h1 data-translate="createAccountTitle">Create Account</h1>
+                <p data-translate="joinTulia">Join Tulia and start your mental wellness journey today.</p>
             </div>
             
             <form id="signupForm" class="signup-form">
                 <div class="form-row">
                     <div class="input-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName" data-translate="firstName">First Name</label>
                         <div class="input-wrapper">
                             <i data-lucide="user"></i>
                             <input type="text" id="firstName" name="firstName" required>
@@ -26,7 +26,7 @@
                     </div>
                     
                     <div class="input-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName" data-translate="lastName">Last Name</label>
                         <div class="input-wrapper">
                             <i data-lucide="user"></i>
                             <input type="text" id="lastName" name="lastName" required>
@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="username">Username</label>
+                    <label for="username" data-translate="username">Username</label>
                     <div class="input-wrapper">
                         <i data-lucide="at-sign"></i>
                         <input type="text" id="username" name="username" required>
@@ -43,7 +43,7 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-translate="email">Email</label>
                     <div class="input-wrapper">
                         <i data-lucide="mail"></i>
                         <input type="email" id="email" name="email" required>
@@ -51,7 +51,7 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone" data-translate="phoneNumber">Phone Number</label>
                     <div class="input-wrapper">
                         <i data-lucide="phone"></i>
                         <input type="tel" id="phone" name="phone" required>
@@ -59,7 +59,21 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="password">Password</label>
+                    <label for="language" data-translate="preferredLanguage">Preferred Language</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="globe"></i>
+                        <select id="language" name="language" required onchange="LanguageManager.setLanguage(this.value)">
+                            <option value="" disabled selected data-translate="selectLanguage">Select your preferred language</option>
+                            <option value="en">English</option>
+                            <option value="sw">Kiswahili (Swahili)</option>
+                            <option value="fr">Français (French)</option>
+                            <option value="es">Español (Spanish)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password" data-translate="password">Password</label>
                     <div class="input-wrapper">
                         <i data-lucide="lock"></i>
                         <input type="password" id="password" name="password" required onfocus="showPasswordRequirements()" onblur="hidePasswordRequirements()">
@@ -70,12 +84,12 @@
                     
                     <!-- Password Requirements Dropdown -->
                     <div id="passwordRequirements" class="password-requirements">
-                        <h4>Password Requirements:</h4>
+                        <h4 data-translate="passwordRequirements">Password Requirements:</h4>
                         <ul>
-                            <li id="length">❌ At least 8 characters long</li>
-                            <li id="uppercase">❌ At least one capital letter</li>
-                            <li id="lowercase">❌ At least one lowercase letter</li>
-                            <li id="number">❌ At least one digit</li>
+                            <li id="length" data-translate="atLeast8Chars">❌ At least 8 characters long</li>
+                            <li id="uppercase" data-translate="oneCapital">❌ At least one capital letter</li>
+                            <li id="lowercase" data-translate="oneLowercase">❌ At least one lowercase letter</li>
+                            <li id="number" data-translate="oneDigit">❌ At least one digit</li>
                         </ul>
                     </div>
                     
@@ -83,12 +97,12 @@
                         <div class="strength-bar">
                             <div id="strengthFill" class="strength-fill"></div>
                         </div>
-                        <span id="strengthText">Password strength</span>
+                        <span id="strengthText" data-translate="passwordStrength">Password strength</span>
                     </div>
                 </div>
                 
                 <div class="input-group">
-                    <label for="confirmPassword">Confirm Password</label>
+                    <label for="confirmPassword" data-translate="confirmPassword">Confirm Password</label>
                     <div class="input-wrapper">
                         <i data-lucide="lock"></i>
                         <input type="password" id="confirmPassword" name="confirmPassword" required>
@@ -99,12 +113,12 @@
                     <label class="checkbox-wrapper">
                         <input type="checkbox" id="terms" required>
                         <span class="checkmark"></span>
-                        I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+                        <span data-translate="agreeTerms">I agree to the Terms of Service and Privacy Policy</span>
                     </label>
                 </div>
                 
                 <button type="submit" class="signup-btn">
-                    <span>Create Account</span>
+                    <span data-translate="createAccountTitle">Create Account</span>
                     <i data-lucide="arrow-right"></i>
                 </button>
             </form>
@@ -114,13 +128,20 @@
             </div>
             
             <div class="login-section">
-                <p>Already have an account?</p>
-                <a href="login.html" class="login-btn-secondary">Sign In</a>
+                <p data-translate="dontHaveAccount">Already have an account?</p>
+                <a href="login.html" class="login-btn-secondary" data-translate="signIn">Sign In</a>
             </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="translations.js"></script>
     <script src="signup.js"></script>
+    <script>
+        // Initialize language system
+        document.addEventListener('DOMContentLoaded', function() {
+            LanguageManager.init();
+        });
+    </script>
 </body>
 </html> 
