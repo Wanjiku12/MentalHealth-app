@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load user data
     loadUserData();
+    
+    // Initialize language system
+    if (typeof LanguageManager !== 'undefined') {
+        LanguageManager.init();
+    }
 });
 
 // Check authentication
@@ -16,72 +21,51 @@ function checkAuth() {
     const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) {
         window.location.href = 'login.html';
-        return;
-    }
-    
-    const user = JSON.parse(currentUser);
-    if (user.role !== 'patient') {
-        // Redirect to appropriate dashboard based on role
-        if (user.role === 'therapist') {
-            window.location.href = 'therapist_dashboard.html';
-        } else {
-            window.location.href = 'login.html';
-        }
     }
 }
 
 // Load user data
 function loadUserData() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    
-    if (currentUser.firstName) {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser) {
+        document.getElementById('userName').textContent = `${LanguageManager.get('welcomeBackUser')}, ${currentUser.firstName}`;
         document.getElementById('userFirstName').textContent = currentUser.firstName;
-        document.getElementById('userName').textContent = `Welcome, ${currentUser.firstName}`;
-    } else {
-        // If no user data, try to get from signup data
-        const users = JSON.parse(localStorage.getItem('users') || '[]');
-        const lastUser = users[users.length - 1];
-        if (lastUser) {
-            document.getElementById('userFirstName').textContent = lastUser.firstName;
-            document.getElementById('userName').textContent = `Welcome, ${lastUser.firstName}`;
-        }
+        
+        // Display user's language preference
+        const userLanguage = currentUser.language || localStorage.getItem('userLanguage') || 'en';
+        const languageNames = {
+            'en': 'EN',
+            'es': 'ES',
+            'fr': 'FR',
+            'de': 'DE',
+            'it': 'IT',
+            'pt': 'PT',
+            'ru': 'RU',
+            'zh': 'ZH',
+            'ja': 'JA',
+            'ko': 'KO',
+            'ar': 'AR',
+            'hi': 'HI',
+            'sw': 'SW',
+            'am': 'AM',
+            'yo': 'YO',
+            'ig': 'IG',
+            'ha': 'HA'
+        };
+        
+        document.getElementById('userLanguage').textContent = languageNames[userLanguage] || 'EN';
     }
 }
 
 // Navigation function
 function navigateTo(url) {
-    // Add loading state
-    const button = event.currentTarget;
-    const originalContent = button.innerHTML;
-    
-    // Show loading animation
-    button.innerHTML = '<i data-lucide="loader-2" class="animate-spin"></i> Loading...';
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-    
-    // Navigate after short delay
-    setTimeout(() => {
-        window.location.href = url;
-    }, 500);
+    window.location.href = url;
 }
 
 // Logout function
 function logout() {
-    // Show confirmation
-    if (confirm('Are you sure you want to logout?')) {
-        // Clear user data
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('rememberedUser');
-        
-        // Show logout message
-        showMessage('Logged out successfully', 'success');
-        
-        // Redirect to login page
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 1000);
-    }
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
 }
 
 // Show message function
