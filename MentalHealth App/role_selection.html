@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="role_selection.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
 </head>
-<body>
+<body data-page-title="chooseRole">
     <div class="container">
         <div class="role-card">
             <div class="header">
-                <h1>Welcome to Tulia!</h1>
-                <p>Please select your role to continue to your personalized dashboard.</p>
+                <h1 data-translate="chooseRole">Choose Your Role</h1>
+                <p data-translate="selectRole">Please select your role to continue</p>
             </div>
             
             <div class="role-options">
@@ -20,12 +20,11 @@
                     <div class="role-icon">
                         <i data-lucide="heart"></i>
                     </div>
-                    <h3>I am a Patient</h3>
-                    <p>Access your journal, mood tracker, and connect with therapists for support on your mental wellness journey.</p>
-                    <div class="features">
-                        <span>📝 Personal Journal</span>
-                        <span>📊 Mood Tracking</span>
-                        <span>💬 Therapist Chat</span>
+                    <h3 data-translate="patient">Patient</h3>
+                    <p data-translate="patientDesc">I'm seeking mental health support and resources</p>
+                    <div class="role-action">
+                        <span data-translate="continue">Continue</span>
+                        <i data-lucide="arrow-right"></i>
                     </div>
                 </div>
                 
@@ -33,12 +32,35 @@
                     <div class="role-icon">
                         <i data-lucide="stethoscope"></i>
                     </div>
-                    <h3>I am a Therapist</h3>
-                    <p>Manage patient records, provide therapy sessions, and support your clients through their mental health journey.</p>
-                    <div class="features">
-                        <span>👥 Patient Records</span>
-                        <span>💬 Chat Sessions</span>
-                        <span>📈 Progress Tracking</span>
+                    <h3 data-translate="therapist">Therapist</h3>
+                    <p data-translate="therapistDesc">I'm a mental health professional providing care</p>
+                    <div class="role-action">
+                        <span data-translate="continue">Continue</span>
+                        <i data-lucide="arrow-right"></i>
+                    </div>
+                </div>
+                
+                <div class="role-option" onclick="window.location.href='panel-admin.html'">
+                    <div class="role-icon">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <h3>System Admin</h3>
+                    <p>Manage platform, users, and system settings</p>
+                    <div class="role-action">
+                        <span>Continue</span>
+                        <i data-lucide="arrow-right"></i>
+                    </div>
+                </div>
+                
+                <div class="role-option" onclick="window.location.href='customercare_portal.html'">
+                    <div class="role-icon">
+                        <i data-lucide="headphones"></i>
+                    </div>
+                    <h3>Customer Care</h3>
+                    <p>Assist users and handle support requests</p>
+                    <div class="role-action">
+                        <span>Continue</span>
+                        <i data-lucide="arrow-right"></i>
                     </div>
                 </div>
             </div>
@@ -50,6 +72,13 @@
     </div>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="translations.js"></script>
     <script src="role_selection.js"></script>
+    <script>
+        // Initialize language system
+        document.addEventListener('DOMContentLoaded', function() {
+            LanguageManager.init();
+        });
+    </script>
 </body>
 </html> 
