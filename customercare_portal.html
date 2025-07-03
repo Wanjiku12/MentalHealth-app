@@ -3,275 +3,511 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Customer Care Panel - Tulia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
+    <title>Customer Care Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css ">
     <style>
-        body {
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to bottom, #ff69b4, #c71585);
-            color: white;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
-
-        header {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px 30px;
+        body {
+            background: linear-gradient(135deg, #fdf2f8, #fbc2eb);
+            color: #2d2d2d;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.10);
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 2px 20px rgba(236, 72, 153, 0.10);
         }
-
-        .logo h2 {
-            color: #c71585;
-            margin: 0;
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
         }
-
-        nav ul {
+        .navbar-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 2rem;
         }
-
-        nav ul li a {
+        .navbar-links li a {
             text-decoration: none;
-            color: #666;
-            font-size: 16px;
-            transition: color 0.3s ease;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
         }
-
-        nav ul li a:hover {
-            color: #ff69b4;
+        .navbar-links li a:hover {
+            color: #ec4899;
         }
-
-        main {
-            max-width: 1000px;
+        .navbar-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transition: width 0.3s;
+        }
+        .navbar-links li a:hover::after {
+            width: 100%;
+        }
+        .container {
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
-
-        section {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
+        .dashboard-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px 20px 28px 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.10);
+            border: 1px solid rgba(236, 72, 153, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
         }
-
-        h2 {
-            margin-top: 0;
-            color: #fff;
+        .dashboard-header h1 {
+            color: #ec4899;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+        .role-tag {
+            background: #fdf2f8;
+            color: #ec4899;
+            padding: 8px 18px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1rem;
         }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        select, button {
-            padding: 8px 12px;
-            font-size: 14px;
-            border-radius: 5px;
+        .logout-btn {
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            color: white;
             border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(236, 72, 153, 0.10);
+            text-decoration: none;
+        }
+        .logout-btn:hover {
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 48px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.10);
+            padding: 32px 20px 28px 20px;
+            text-align: center;
+            border: 1px solid rgba(236, 72, 153, 0.10);
+            transition: all 0.3s;
+            position: relative;
             cursor: pointer;
         }
+        .feature-card:hover {
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.18);
+            border-color: rgba(236, 72, 153, 0.25);
+        }
+        .icon {
+            font-size: 2.5rem;
+            color: #ec4899;
+            margin-bottom: 18px;
+        }
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ec4899;
+            margin-bottom: 10px;
+        }
+        .feature-card .status {
+            background: #fdf2f8;
+            color: #ec4899;
+            padding: 6px 16px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .feature-card p {
+            color: #6b7280;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .access-btn {
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(236, 72, 153, 0.10);
+        }
+        .access-btn:hover {
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
+        }
 
-        select {
+        /* Modal for user details */
+        #user-details-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 999;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #user-details-modal h3 {
+            margin-top: 0;
             margin-bottom: 10px;
         }
 
-        button {
-            background: #ff69b4;
-            color: white;
+        #user-details-modal p {
+            margin: 5px 0;
         }
 
-        button:hover {
-            background: #c71585;
+        /* Feedback section */
+        #feedback-section,
+        #ticket-section,
+        #emergency-section {
+            display: none;
+            margin-top: 2rem;
         }
 
-        .ticket-details {
-            margin-top: 20px;
-            padding: 15px;
+        .feedback-item {
             background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
             border-radius: 8px;
+            margin-bottom: 10px;
         }
 
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-        }
-
-        .open { background: #ffd700; color: #000; }
-        .in-progress { background: #1e90ff; }
-        .resolved { background: #32cd32; }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
+        .emergency-alert {
+            background: red;
             color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 8px;
+            }
+            .navbar {
+                padding: 12px 10px;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 2vw;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 2vw;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 18px 8px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Header -->
-<header>
-    <div class="logo">
-        <h2>Tulia</h2>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="features.html">Features</a></li>
-            <li><a href="login.html">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+<!-- Navigation -->
+<nav class="navbar">
+    <a href="index.html" class="logo">Tulia</a>
+    <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
 <!-- Main Content -->
-<main>
-    <!-- Support Tickets -->
-    <section>
-        <h2>📬 Support Requests</h2>
-        <select id="filterCategory" onchange="filterTickets()">
-            <option value="">All Categories</option>
-            <option value="technical">Technical</option>
-            <option value="scheduling">Therapy Scheduling</option>
-            <option value="login">Login Support</option>
-        </select>
+<main class="container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <h1>Customer Care Dashboard</h1>
+        <span class="role-tag">Customer Care</span>
+        <a href="login.html" class="logout-btn">Logout</a>
+    </div>
 
-        <table id="ticketsTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>User ID</th>
-                    <th>Category</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Timestamp</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Sample Tickets -->
-                <tr data-category="technical" data-status="open">
-                    <td>#1001</td>
-                    <td>P0045</td>
-                    <td>Technical</td>
-                    <td>Can't join video session</td>
-                    <td><span class="status-badge open">Open</span></td>
-                    <td>2025-06-28 09:30 AM</td>
-                    <td><button onclick="viewTicket(this)">View</button></td>
-                </tr>
-                <tr data-category="login" data-status="in-progress">
-                    <td>#1002</td>
-                    <td>P0021</td>
-                    <td>Login</td>
-                    <td>Forgot password</td>
-                    <td><span class="status-badge in-progress">In Progress</span></td>
-                    <td>2025-06-28 10:15 AM</td>
-                    <td><button onclick="viewTicket(this)">View</button></td>
-                </tr>
-                <tr data-category="scheduling" data-status="resolved">
-                    <td>#1003</td>
-                    <td>P0032</td>
-                    <td>Scheduling</td>
-                    <td>Session rescheduled successfully</td>
-                    <td><span class="status-badge resolved">Resolved</span></td>
-                    <td>2025-06-28 11:00 AM</td>
-                    <td><button onclick="viewTicket(this)">View</button></td>
-                </tr>
-            </tbody>
-        </table>
+    <p style="text-align: center; font-size: 1.1em; color: #666; margin-bottom: 40px;">
+        Welcome back! Here are your available features and tools.
+    </p>
+
+    <!-- Feature Grid -->
+    <div class="feature-grid">
+        <!-- Access User Details -->
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-id-card"></i></div>
+            <h3>Access User Details</h3>
+            <div class="status">Available</div>
+            <p>View and manage user profiles</p>
+            <button class="access-btn" onclick="promptUserId()">Access Feature</button>
+        </div>
+
+        <!-- Receive Feedback -->
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-comments"></i></div>
+            <h3>Receive Feedback or Requests</h3>
+            <div class="status">Live</div>
+            <p>View and respond to user messages</p>
+            <button class="access-btn" onclick="showFeedback()">Access Feature</button>
+        </div>
+
+        <!-- Respond to Requests -->
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-reply"></i></div>
+            <h3>Respond to Requests</h3>
+            <div class="status">Live</div>
+            <p>Send replies to user inquiries</p>
+            <button class="access-btn" onclick="showFeedback()">Access Feature</button>
+        </div>
+
+        <!-- Handle Emergency -->
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-first-aid"></i></div>
+            <h3>Handle Client Emergency</h3>
+            <div class="status">Active</div>
+            <p>Manage urgent client issues</p>
+            <button class="access-btn" onclick="showEmergency()">Access Feature</button>
+        </div>
+
+        <!-- Emergency Call -->
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-phone-volume"></i></div>
+            <h3>Receive Emergency Calls</h3>
+            <div class="status">Active</div>
+            <p>Handle incoming emergency calls</p>
+            <button class="access-btn" onclick="showEmergency()">Access Feature</button>
+        </div>
+
+        <!-- Respond to Feedback -->
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-thumbs-up"></i></div>
+            <h3>Respond to Feedback</h3>
+            <div class="status">Live</div>
+            <p>Provide updates based on user feedback</p>
+            <button class="access-btn" onclick="showFeedback()">Access Feature</button>
+        </div>
+    </div>
+
+    <!-- Sections Hidden by Default -->
+    <!-- Feedback Section -->
+    <section id="feedback-section">
+        <h2>💬 User Feedback</h2>
+        <div id="feedback-container"></div>
     </section>
 
-    <!-- Ticket Details Modal -->
-    <section id="ticketDetails" class="ticket-details" style="display: none;">
-        <h3>🔍 Ticket Details</h3>
-        <p><strong>Category:</strong> <span id="detailCategory"></span></p>
-        <p><strong>Description:</strong> <span id="detailDescription">User reported difficulty joining video session.</span></p>
-        <p><strong>Metadata:</strong> <span id="detailMetadata">Error code: 403, Session link expired</span></p>
-        <p><strong>Status:</strong> <span id="detailStatus"><span class="status-badge open">Open</span></span></p>
-        <textarea id="responseMessage" placeholder="Write response..."></textarea>
-        <select id="assignTo">
-            <option value="">Assign To</option>
-            <option value="admin">Admin</option>
-            <option value="therapist">Therapist</option>
-        </select>
-        <button onclick="submitResponse()">Submit Response</button>
-        <button onclick="resolveTicket()">Mark as Resolved</button>
+    <!-- Ticket Submission Form & List -->
+    <section id="ticket-section">
+        <h2>🎫 Submit New Ticket</h2>
+        <form onsubmit="submitTicket(event)">
+            <input type="number" id="ticket-user-id" placeholder="User ID" required style="width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: none;" />
+            <input type="text" id="ticket-title" placeholder="Title" required style="width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: none;" />
+            <textarea id="ticket-desc" placeholder="Description" rows="3" required style="width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: none;"></textarea>
+            <button class="access-btn" type="submit">Submit Ticket</button>
+        </form>
+        <h2>📬 Active Tickets</h2>
+        <div id="ticket-container"></div>
     </section>
+
+    <!-- Emergency Alerts -->
+    <section id="emergency-section">
+        <h2>🚨 Emergency Alert</h2>
+        <div id="emergency-alert" class="emergency-alert" style="display: none;">
+            ⚠️ Emergency call from User #<span id="emergency-userid"></span>
+        </div>
+        <button class="access-btn" onclick="acknowledgeEmergency()">Acknowledge</button>
+    </section>
+
+    <!-- User Details Modal -->
+    <div id="user-details-modal">
+        <h3>User Profile</h3>
+        <p><strong>ID:</strong> <span id="modal-id"></span></p>
+        <p><strong>Name:</strong> <span id="modal-name"></span></p>
+        <p><strong>Email:</strong> <span id="modal-email"></span></p>
+        <p><strong>Role:</strong> <span id="modal-role"></span></p>
+        <button onclick="document.getElementById('user-details-modal').style.display = 'none'" style="margin-top: 10px;">Close</button>
+    </div>
 </main>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 Tulia. All rights reserved.</p>
-</footer>
-
+<!-- Scripts -->
 <script>
-    function filterTickets() {
-        const category = document.getElementById("filterCategory").value;
-        const rows = document.querySelectorAll("#ticketsTable tbody tr");
+    // Simulate sample users
+    const users = [
+        { id: 1, name: "Alice Johnson", email: "alice@example.com", role: "patient" },
+        { id: 2, name: "John Smith", email: "john@example.com", role: "patient" },
+        { id: 3, name: "Lisa Adams", email: "lisa@example.com", role: "patient" }
+    ];
 
-        rows.forEach(row => {
-            if (!category || row.getAttribute("data-category") === category) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
+    function promptUserId() {
+        const id = parseInt(prompt("Enter User ID (e.g., 1, 2, 3):"));
+        if (users.find(u => u.id === id)) {
+            showUserDetails(id);
+        } else {
+            alert("⚠️ Invalid user ID");
+        }
+    }
+
+    function showUserDetails(userId) {
+        const user = users.find(u => u.id === userId);
+        document.getElementById("modal-id").innerText = user.id;
+        document.getElementById("modal-name").innerText = user.name;
+        document.getElementById("modal-email").innerText = user.email;
+        document.getElementById("modal-role").innerText = user.role;
+        document.getElementById("user-details-modal").style.display = "block";
+    }
+
+    function showFeedback() {
+        document.getElementById("feedback-section").style.display = "block";
+        loadFeedback();
+    }
+
+    function showTickets() {
+        document.getElementById("ticket-section").style.display = "block";
+        loadTickets();
+    }
+
+    function showEmergency() {
+        document.getElementById("emergency-section").style.display = "block";
+        simulateEmergencyCall();
+    }
+
+    function loadFeedback() {
+        const container = document.getElementById("feedback-container");
+        container.innerHTML = "";
+        const feedback = [
+            { user_id: 1, message: "Can't log in to my account." },
+            { user_id: 2, message: "Therapy session link expired." }
+        ];
+        feedback.forEach(fb => {
+            const div = document.createElement("div");
+            div.className = "feedback-item";
+            div.innerHTML = `
+                <p><strong>User ID:</strong> ${fb.user_id}</p>
+                <p><strong>Message:</strong> ${fb.message}</p>
+                <textarea id="resp-${fb.user_id}" placeholder="Type response..." style="width: 100%; margin: 5px 0; padding: 8px;"></textarea>
+                <button onclick="respond(${fb.user_id})">Send Response</button>
+            `;
+            container.appendChild(div);
         });
     }
 
-    function viewTicket(button) {
-        const row = button.closest("tr");
-        const cells = row.getElementsByTagName("td");
-
-        document.getElementById("detailCategory").textContent = cells[2].textContent;
-        document.getElementById("detailDescription").textContent = cells[3].textContent;
-        document.getElementById("detailMetadata").textContent = "Error code: 403, Session link expired";
-
-        const statusText = cells[4].querySelector(".status-badge").textContent;
-        const statusClass = cells[4].querySelector(".status-badge").className;
-
-        document.getElementById("detailStatus").innerHTML = `<span class="status-badge ${statusClass}">${statusText}</span>`;
-        document.getElementById("ticketDetails").style.display = "block";
+    function respond(id) {
+        const input = document.getElementById(`resp-${id}`);
+        if (!input.value.trim()) return alert("Please enter a response.");
+        alert("✅ Response sent!");
+        input.value = "";
     }
 
-    function submitResponse() {
-        const message = document.getElementById("responseMessage").value.trim();
-        const assignTo = document.getElementById("assignTo").value;
+    async function submitTicket(e) {
+        e.preventDefault();
+        const userId = document.getElementById("ticket-user-id").value;
+        const title = document.getElementById("ticket-title").value;
+        const desc = document.getElementById("ticket-desc").value;
 
-        if (!message) {
-            alert("⚠️ Please write a response before submitting.");
-            return;
-        }
+        const ticket = {
+            id: Date.now(),
+            user_id: userId,
+            title,
+            description: desc,
+            status: "open"
+        };
 
-        alert(`✅ Response sent. Assigned to: ${assignTo || 'no one'}`);
-        document.getElementById("responseMessage").value = "";
-        document.getElementById("assignTo").value = "";
+        const container = document.getElementById("ticket-container");
+        const div = document.createElement("div");
+        div.className = "feedback-item";
+        div.innerHTML = `
+            <p><strong>Ticket ID:</strong> #${ticket.id}</p>
+            <p><strong>User ID:</strong> ${ticket.user_id}</p>
+            <p><strong>Title:</strong> ${ticket.title}</p>
+            <p><strong>Description:</strong> ${ticket.description}</p>
+            <select onchange="updateStatus(this.value, ${ticket.id})">
+                <option value="open">Open</option>
+                <option value="in-progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+            </select>
+        `;
+        container.appendChild(div);
+        document.getElementById("ticket-user-id").value = "";
+        document.getElementById("ticket-title").value = "";
+        document.getElementById("ticket-desc").value = "";
     }
 
-    function resolveTicket() {
-        if (confirm("Are you sure you want to mark this ticket as resolved?")) {
-            document.querySelector("#detailStatus .status-badge")
-                .classList.replace("open", "resolved")
-                .classList.replace("in-progress", "resolved");
-            document.querySelector("#detailStatus .status-badge").textContent = "Resolved";
-            alert("✅ Ticket marked as resolved.");
-        }
+    function updateStatus(status, id) {
+        alert("Status updated for Ticket #" + id + " → " + status);
     }
+
+    function simulateEmergencyCall() {
+        const userId = Math.floor(Math.random() * 100) + 1;
+        document.getElementById("emergency-userid").innerText = userId;
+        document.getElementById("emergency-alert").style.display = "block";
+    }
+
+    function acknowledgeEmergency() {
+        alert("🚨 Emergency acknowledged!");
+        document.getElementById("emergency-alert").style.display = "none";
+    }
+
+    window.onload = () => {
+        loadFeedback();
+        setInterval(simulateEmergencyCall, 30000); // Every 30 seconds
+    };
 </script>
 
 </body>
