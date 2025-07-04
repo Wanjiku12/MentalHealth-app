@@ -16,7 +16,7 @@ body {
 .navbar{
     margin: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background: white;
     padding: 15px 30px;
@@ -25,6 +25,7 @@ body {
 }
 .navbar h1{
     color: #ff2d92;
+    margin-right: 50px;
 }
 .nav-links a{
     margin-left: 20px;
@@ -32,15 +33,6 @@ body {
     color: #333;
     font-weight: bold;
 }
-.login-button{
-    background-color: #ff2d92;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
 .container {
     max-width: 1024px;
     margin: 0 auto;
