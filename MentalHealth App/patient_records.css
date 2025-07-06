@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
 }
 
 body {
@@ -21,9 +23,12 @@ body {
 }
 
 .navbar h1 {
-    color: #ff2d92;
-    font-size: 2rem;
-    letter-spacing: 0.03em;
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #ec4899, #db2777);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .nav-links {
@@ -33,25 +38,42 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #ec4899;
+    color: #6b7280;
     font-weight: 600;
     font-size: 1.1rem;
     transition: color 0.2s;
 }
 
 .nav-links a:hover {
-    color: #be185d;
+    color: #ec4899;
 }
 
 .user-section {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
+}
+
+.language-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(236, 72, 153, 0.1);
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
+    color: #ec4899;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.language-indicator i {
+    width: 16px;
+    height: 16px;
 }
 
 #userName {
-    color: #6b7280;
-    font-weight: 500;
+    color: #374151;
+    font-weight: 600;
 }
 
 .logout-btn {

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | Tulia</title>
+    <link rel="stylesheet" href="patient_dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
+</head>
+<body data-page-title="patientDashboard">
+    <div class="navbar">
+        <h1>Tulia</h1>
+        <div class="nav-links">
+            <a href="../Home page/index.html" data-translate="home">Home</a>
+            <a href="../About page/about.html" data-translate="aboutUs">About Us</a>
+            <a href="../Journal page/journal.html" data-translate="myJournal">My Journal</a>
+            <a href="moodtracker.html" data-translate="moodTracker">Mood Tracker</a>
+            <a href="therapist.html" data-translate="therapyConnect">Therapy Connect</a>
+            <a href="../Contact page/contactpage.html" data-translate="contactUs">Contact Us</a>
+        </div>
+        <div class="user-section">
+            <div class="language-indicator">
+                <i data-lucide="globe"></i>
+                <span id="userLanguage">EN</span>
+            </div>
+            <span id="userName" data-translate="welcomeBackUser">Welcome</span>
+            <button class="logout-btn" onclick="logout()">
+                <i data-lucide="log-out"></i>
+                <span data-translate="logout">Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-section">
+            <div class="welcome-card">
+                <div class="welcome-content">
+                    <h2><span data-translate="welcomeBackUser">Welcome back</span>, <span id="userFirstName">Patient</span>! 👋</h2>
+                    <p data-translate="readyToContinue">Ready to continue your mental wellness journey? Here's what you can do today.</p>
+                </div>
+                <div class="welcome-icon">
+                    <i data-lucide="heart"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card" onclick="navigateTo('journal.html')">
+                <div class="feature-icon">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <h3 data-translate="myJournal">My Journal</h3>
+                <p data-translate="journalDesc">Write about your thoughts, feelings, and experiences in your personal digital journal.</p>
+                <div class="feature-action">
+                    <span data-translate="startWriting">Start Writing</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="feature-card" onclick="navigateTo('moodtracker.html')">
+                <div class="feature-icon">
+                    <i data-lucide="trending-up"></i>
+                </div>
+                <h3 data-translate="moodTracker">Mood Tracker</h3>
+                <p data-translate="moodDesc">Track your daily moods and emotions to better understand your mental health patterns.</p>
+                <div class="feature-action">
+                    <span data-translate="trackMood">Track Mood</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="feature-card" onclick="navigateTo('therapist.html')">
+                <div class="feature-icon">
+                    <i data-lucide="message-circle"></i>
+                </div>
+                <h3 data-translate="therapyConnect">Therapy Connect</h3>
+                <p data-translate="therapyDesc">Connect with qualified therapists for professional support and guidance.</p>
+                <div class="feature-action">
+                    <span data-translate="connectNow">Connect Now</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="feature-card" onclick="navigateTo('contactpage.html')">
+                <div class="feature-icon">
+                    <i data-lucide="phone"></i>
+                </div>
+                <h3 data-translate="contactSupport">Contact Support</h3>
+                <p data-translate="contactDesc">Get in touch with our support team for any questions or assistance you need.</p>
+                <div class="feature-action">
+                    <span data-translate="contactUs">Contact Us</span>
+                    <i data-lucide="arrow-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3 data-translate="quickActions">Quick Actions</h3>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="navigateTo('journal.html')">
+                    <i data-lucide="plus"></i>
+                    <span data-translate="newJournalEntry">New Journal Entry</span>
+                </button>
+                <button class="action-btn" onclick="navigateTo('moodtracker.html')">
+                    <i data-lucide="smile"></i>
+                    <span data-translate="logTodaysMood">Log Today's Mood</span>
+                </button>
+                <button class="action-btn" onclick="navigateTo('therapist.html')">
+                    <i data-lucide="users"></i>
+                    <span data-translate="findTherapist">Find Therapist</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="translations.js"></script>
+    <script src="patient_dashboard.js"></script>
+    <script>
+        // Initialize language system
+        document.addEventListener('DOMContentLoaded', function() {
+            LanguageManager.init();
+        });
+    </script>
+</body>
+</html>

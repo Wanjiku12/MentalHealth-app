@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tulia - Mental Wellness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+    }
+    body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fdf2f8 0%, #fbc2eb 100%);
+      color: #2d2d2d;
+      min-height: 100vh;
+    }
+    .navbar{
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 30px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar h1{
+    color: #ff2d92;
+}
+.nav-links a{
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+.login-button{
+    background-color: #ff2d92;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+    .hero {
+      text-align: center;
+      padding: 90px 20px 60px 20px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 0 0 32px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 32px rgba(236, 72, 153, 0.10);
+    }
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ec4899, #db2777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #6b7280;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    .get-started {
+      padding: 14px 36px;
+      background: linear-gradient(to right, #f472b6, #ec4899);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.15);
+    }
+    .get-started:hover {
+      background: linear-gradient(to right, #ec4899, #db2777);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.20);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 48px 6vw 48px 6vw;
+      background: rgba(255, 240, 246, 0.7);
+      border-radius: 32px;
+      margin: 0 auto 48px auto;
+      max-width: 1200px;
+      box-shadow: 0 4px 24px rgba(236, 72, 153, 0.08);
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      padding: 32px 20px 28px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.10);
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(236, 72, 153, 0.10);
+      position: relative;
+    }
+    .feature-card:hover {
+      transform: translateY(-7px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(236, 72, 153, 0.18);
+      border-color: rgba(236, 72, 153, 0.25);
+    }
+    .feature-card i {
+      width: 64px;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 2px 8px rgba(236, 72, 153, 0.10));
+    }
+    .feature-card h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ec4899;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      color: #6b7280;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+    @media (max-width: 900px) {
+      .features {
+        grid-template-columns: 1fr 1fr;
+        padding: 32px 2vw;
+      }
+      .navbar {
+        padding: 12px 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .features {
+        grid-template-columns: 1fr;
+        padding: 18px 2vw;
+      }
+      .hero {
+        padding: 48px 8px 32px 8px;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 2vw;
+      }
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>Tulia</h1>
+     <div class="nav-links">
+       <a href="index.html">Home</a>
+       <a href="../About page/about.html">About Us</a>
+       <a href="../Journal page/journal.html">My Journal</a>
+       <a href="../moodtracker.html">Mood Tracker</a>
+       <a href="../therapist.html">Therapy Connect</a>
+       <a href="../Contact page/contactpage.html">Contact Us</a>
+     </div>
+    <button class="login-button" onclick="window.location.href='../login.html'">Login</button>
+  </div>
+
+  <div class="hero">
+    <h2>Your Mental Wellness Journey Starts Here</h2>
+    <p>Discover a safe space for healing, growth, and self-care with Tulia's comprehensive mental health platform</p>
+    <button class="get-started" onclick="window.location.href='../signup.html'">Get Started Today</button>
+  </div>
+
+  <div class="features">
+    <div class="feature-card" onclick="window.location.href='../signup.html'">
+      <i class="fa-solid fa-cloud-moon" alt="Mood tracking"></i>
+      <h4>Mood Tracking</h4>
+      <p>Track emotional wellness with mood logs & analytics.</p>
+    </div>
+    <div class="feature-card" onclick="window.location.href='../signup.html'">
+      <i class="fa-solid fa-book" alt="Journaling"></i>
+      <h4>Digital Journaling</h4>
+      <p>Write thoughts in a secure, private journal.</p>
+    </div>
+    <div class="feature-card" onclick="window.location.href='../signup.html'">
+      <i class="fa-solid fa-user-doctor" alt="Therapy"></i>
+      <h4>Secure Therapy</h4>
+      <p>Access professional support privately & securely.</p>
+    </div>
+    <div class="feature-card" onclick="window.location.href='../signup.html'" >
+      <i class="fa-solid fa-comment" alt="Daily Check-ins"></i>
+      <h4>Daily Check-ins</h4>
+      <p>Log your feelings every day for better mental clarity.</p>
+    </div>
+    <div class="feature-card" onclick="window.location.href='../signup.html'">
+      <i class="fa-solid fa-language" alt="Multilingual Access"></i>
+      <h4>Multilingual Access</h4>
+      <p>Switch to your preferred language easily.</p>
+    </div>
+  </div>
+
+</body>
+</html>

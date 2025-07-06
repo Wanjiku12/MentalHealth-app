@@ -7,53 +7,126 @@
     <link rel="stylesheet" href="patient_records.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
 </head>
-<body>
+<body data-page-title="patientRecordsTitle">
     <div class="navbar">
         <h1>Tulia</h1>
         <div class="nav-links">
-            <a href="therapist_dashboard.html">Dashboard</a>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="contactpage.html">Contact Us</a>
+            <a href="therapist_dashboard.html" data-translate="Dashboard">Dashboard</a>
+            <a href="index.html" data-translate="home">Home</a>
+            <a href="about.html" data-translate="aboutUs">About Us</a>
+            <a href="contactpage.html" data-translate="contactUs">Contact Us</a>
         </div>
         <div class="user-section">
-            <span id="userName">Welcome</span>
+            <div class="language-indicator">
+                <i data-lucide="globe"></i>
+                <span id="userLanguage">EN</span>
+            </div>
+            <span id="userName" data-translate="welcomeBackUser">Welcome</span>
             <button class="logout-btn" onclick="logout()">
                 <i data-lucide="log-out"></i>
-                Logout
+                <span data-translate="logout">Logout</span>
             </button>
         </div>
     </div>
 
     <div class="container">
-        <div class="header-section">
-            <div class="header-content">
-                <h2>Patient Records</h2>
-                <p>Manage and view all your patient information, progress notes, and treatment plans.</p>
+        <div class="header">
+            <h1 data-translate="patientRecordsTitle">Patient Records</h1>
+            <p data-translate="recordsDesc">Manage and view your patients' information, progress, and treatment plans.</p>
+        </div>
+
+        <div class="controls">
+            <div class="search-section">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="searchInput" data-translate="searchPatients" placeholder="Search patients...">
+                </div>
             </div>
-            <button class="add-patient-btn" onclick="showAddPatientModal()">
-                <i data-lucide="user-plus"></i>
-                Add New Patient
+            <button class="add-btn" onclick="showAddPatientModal()">
+                <i data-lucide="plus"></i>
+                <span data-translate="addPatient">Add Patient</span>
             </button>
         </div>
 
-        <div class="search-section">
-            <div class="search-box">
-                <i data-lucide="search"></i>
-                <input type="text" id="searchInput" placeholder="Search patients by name, email, or ID...">
-            </div>
-            <div class="filter-options">
-                <select id="statusFilter">
-                    <option value="">All Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="completed">Completed</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="patients-grid" id="patientsGrid">
-            <!-- Patient cards will be populated by JavaScript -->
+        <div class="records-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-translate="name">Name</th>
+                        <th data-translate="age">Age</th>
+                        <th data-translate="email">Email</th>
+                        <th data-translate="phone">Phone</th>
+                        <th data-translate="status">Status</th>
+                        <th data-translate="actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="patientsTableBody">
+                    <!-- Sample data -->
+                    <tr>
+                        <td>John Doe</td>
+                        <td>28</td>
+                        <td>john.doe@email.com</td>
+                        <td>+1 (555) 123-4567</td>
+                        <td><span class="status active" data-translate="active">Active</span></td>
+                        <td>
+                            <button class="action-btn view" onclick="viewPatient(1)">
+                                <i data-lucide="eye"></i>
+                                <span data-translate="viewDetails">View</span>
+                            </button>
+                            <button class="action-btn edit" onclick="editPatient(1)">
+                                <i data-lucide="edit"></i>
+                                <span data-translate="edit">Edit</span>
+                            </button>
+                            <button class="action-btn delete" onclick="deletePatient(1)">
+                                <i data-lucide="trash"></i>
+                                <span data-translate="delete">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>34</td>
+                        <td>jane.smith@email.com</td>
+                        <td>+1 (555) 987-6543</td>
+                        <td><span class="status active" data-translate="active">Active</span></td>
+                        <td>
+                            <button class="action-btn view" onclick="viewPatient(2)">
+                                <i data-lucide="eye"></i>
+                                <span data-translate="viewDetails">View</span>
+                            </button>
+                            <button class="action-btn edit" onclick="editPatient(2)">
+                                <i data-lucide="edit"></i>
+                                <span data-translate="edit">Edit</span>
+                            </button>
+                            <button class="action-btn delete" onclick="deletePatient(2)">
+                                <i data-lucide="trash"></i>
+                                <span data-translate="delete">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mike Johnson</td>
+                        <td>42</td>
+                        <td>mike.johnson@email.com</td>
+                        <td>+1 (555) 456-7890</td>
+                        <td><span class="status inactive" data-translate="inactive">Inactive</span></td>
+                        <td>
+                            <button class="action-btn view" onclick="viewPatient(3)">
+                                <i data-lucide="eye"></i>
+                                <span data-translate="viewDetails">View</span>
+                            </button>
+                            <button class="action-btn edit" onclick="editPatient(3)">
+                                <i data-lucide="edit"></i>
+                                <span data-translate="edit">Edit</span>
+                            </button>
+                            <button class="action-btn delete" onclick="deletePatient(3)">
+                                <i data-lucide="trash"></i>
+                                <span data-translate="delete">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -61,55 +134,61 @@
     <div id="addPatientModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Add New Patient</h3>
-                <button class="close-btn" onclick="closeAddPatientModal()">
+                <h2 data-translate="addNewPatientTitle">Add New Patient</h2>
+                <button class="close-btn" onclick="closeModal()">
                     <i data-lucide="x"></i>
                 </button>
             </div>
             <form id="addPatientForm">
                 <div class="form-row">
                     <div class="input-group">
-                        <label for="patientFirstName">First Name</label>
-                        <input type="text" id="patientFirstName" required>
+                        <label for="patientName" data-translate="name">Name</label>
+                        <input type="text" id="patientName" required>
                     </div>
                     <div class="input-group">
-                        <label for="patientLastName">Last Name</label>
-                        <input type="text" id="patientLastName" required>
+                        <label for="patientAge" data-translate="age">Age</label>
+                        <input type="number" id="patientAge" required>
                     </div>
                 </div>
                 <div class="input-group">
-                    <label for="patientEmail">Email</label>
+                    <label for="patientEmail" data-translate="email">Email</label>
                     <input type="email" id="patientEmail" required>
                 </div>
                 <div class="input-group">
-                    <label for="patientPhone">Phone</label>
+                    <label for="patientPhone" data-translate="phone">Phone</label>
                     <input type="tel" id="patientPhone" required>
                 </div>
-                <div class="input-group">
-                    <label for="patientAge">Age</label>
-                    <input type="number" id="patientAge" min="1" max="120" required>
-                </div>
-                <div class="input-group">
-                    <label for="patientStatus">Status</label>
-                    <select id="patientStatus" required>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="patientNotes">Initial Notes</label>
-                    <textarea id="patientNotes" rows="3" placeholder="Enter initial assessment or notes..."></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="cancel-btn" onclick="closeAddPatientModal()">Cancel</button>
-                    <button type="submit" class="save-btn">Add Patient</button>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="closeModal()" data-translate="cancel">Cancel</button>
+                    <button type="submit" class="save-btn" data-translate="save">Save</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <!-- Patient Details Modal -->
+    <div id="patientDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="patientDetails">Patient Details</h2>
+                <button class="close-btn" onclick="closeDetailsModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="patientDetailsContent">
+                <!-- Patient details will be populated here -->
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="translations.js"></script>
     <script src="patient_records.js"></script>
+    <script>
+        // Initialize language system
+        document.addEventListener('DOMContentLoaded', function() {
+            LanguageManager.init();
+        });
+    </script>
 </body>
 </html> 

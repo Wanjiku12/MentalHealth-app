@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="contact.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+             publicKey: "_k9V6ZDx3Ccu4U2Ht",
+         });
+      })();
+    </script>
+    <script src="contact.js"></script>
+  </head>
+<body>
+   <div class="navbar">
+      <h1>Tulia</h1>
+       <div class="nav-links">
+         <a href="../Home page/index.html">Home</a>
+         <a href="../About page/about.html">About Us</a>
+         <a href="../Journal page/journal.html">My Journal</a>
+         <a href="../moodtracker.html">Mood Tracker</a>
+         <a href="../therapist.html">Therapy Connect</a>
+         <a href="contactpage.html">Contact Us</a>
+       </div>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="left-side">
+                <div class="address details">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="topic">Address</div>
+                    <div class="text-one">Strathmore University</div>
+                    <div class="text-two">Keri Road,Nairobi</div>
+                </div>
+                <div class="phone details">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="topic">Phone</div>
+                    <div class="text-one">0702259662</div>
+                    <div class="text-two">0794980204</div>
+                </div>
+                <div class="email details">
+                    <i class="fas fa-envelope"></i>
+                    <div class="topic">Email</div>
+                    <div class="text-one">maureen.waweru@strathmore.edu</div>
+                    <div class="text-two">freshia.macharia@strathmore.edu</div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="topic-text">Send us a message</div>
+                <p>If you have have any questions, suggestions or feedback, feel free to reach out. We would love to hear from you!</p>
+            <form action="#">
+                <div class="input-box">
+                    <input type="text" name="name" id="name" placeholder="Enter your name">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="input-box message-box">
+                    <input type="text" name="message" id="message" placeholder="Enter your message">
+                </div>
+                <div class="button">
+                    <input type="button"onclick="sendMail()" value="Send Message">
+                  </div>
+                </div>
+            </form>
+           </div>
+        </div>
+    </div>
+ 
+    
+</body>
+</html>
