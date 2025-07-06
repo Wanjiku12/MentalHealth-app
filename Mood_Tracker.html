@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mood Tracker | Tulia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css " rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #fdf2f8, #fbc2eb);
+            color: #2d2d2d;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.10);
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 2px 20px rgba(236, 72, 153, 0.10);
+        }
+        .logo h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #ec4899;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        section {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px 20px 28px 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.10);
+            border: 1px solid rgba(236, 72, 153, 0.10);
+        }
+        h2 {
+            margin-top: 0;
+            color: #ec4899;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .mood-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .mood-button {
+            flex: 1 1 45%;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ec4899;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #ec4899;
+            transition: all 0.3s ease;
+        }
+        .mood-button.selected {
+            background-color: #ec4899;
+            color: white;
+        }
+
+        /* Rating scale */
+        .rating-scale {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rating-scale label {
+            font-weight: 600;
+            color: #ec4899;
+        }
+        .rating-scale input[type="range"] {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        /* Note Input */
+        textarea {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            resize: vertical;
+        }
+
+        button.save-btn {
+            margin-top: 20px;
+            background: linear-gradient(to right, #f472b6, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button.save-btn:hover {
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
+        }
+
+        /* Mood History */
+        .history-section {
+            margin-top: 40px;
+        }
+        .history-section h3 {
+            font-size: 1.4rem;
+            color: #ec4899;
+            margin-bottom: 10px;
+        }
+        .history-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mood-tag {
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Color classes for moods */
+        .calm { background: #bfdbfe; color: #0369a1; }
+        .energized { background: #bbf7d0; color: #16a34a; }
+        .hopeful { background: #c7ceff; color: #4f46e5; }
+        .low-energy { background: #fecdd3; color: #be185d; }
+        .gloomy { background: #e5e7eb; color: #4b5563; }
+        .triggered { background: #fca5a5; color: #991b1b; }
+        .obsessive-thoughts { background: #fcd34d; color: #92400e; }
+        .mood-swings { background: #fde68a; color: #ca8a04; }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 24px 24px 0 0;
+        }
+    </style>
+</head>
+<body data-page-title="patientDashboard">
+
+<!-- Header -->
+<header>
+    <div class="logo">
+        <h2>Tulia</h2>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../Home page/index.html">Home</a></li>
+            <li><a href="../About page/about.html">About</a></li>
+            <li><a href="../Journal page/journal.html">My Journal</a></li>
+            <li><a href="moodtracker.html">Mood Tracker</a></li>
+            <li><a href="therapist.html">Therapy Connect</a></li>
+            <li><a href="../Contact page/contactpage.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+    <section>
+        <h2>😊 Track Your Mood Today</h2>
+
+        <!-- Date -->
+        <p><strong>Date:</strong> <span id="currentDate"></span></p>
+
+        <!-- Emotional State Buttons -->
+        <div class="mood-buttons">
+            <button class="mood-button" onclick="selectMood(this)" data-mood="calm">Calm</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="energized">Energized</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="hopeful">Hopeful</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="low energy">Low Energy</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="gloomy">Gloomy</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="triggered">Triggered</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="obsessive thoughts">Obsessive Thoughts</button>
+            <button class="mood-button" onclick="selectMood(this)" data-mood="mood swings">Mood Swings</button>
+        </div>
+
+        <!-- Mood Intensity Scale -->
+        <div class="rating-scale">
+            <label for="moodRating">Intensity (1-5):</label>
+            <input type="range" id="moodRating" min="1" max="5" value="3">
+            <span id="ratingDisplay">3</span>/5
+        </div>
+
+        <!-- Optional Note -->
+        <textarea id="moodNote" rows="4" placeholder="Write about what you're feeling..."></textarea>
+
+        <!-- Save Button -->
+        <button class="save-btn" onclick="saveMood()">Save My Mood</button>
+    </section>
+
+    <!-- Recent Moods Section -->
+    <section class="history-section">
+        <h3>📅 Recent Moods</h3>
+        <div id="moodHistoryList">
+            <!-- Mood history items will appear here -->
+            <p>No mood entries yet.</p>
+        </div>
+    </section>
+</main>
+
+<div class="footer">
+    <p>&copy; 2025 Tulia. All rights reserved.</p>
+</div>
+
+<script>
+    let selectedMood = null;
+
+    // Set current date
+    document.addEventListener("DOMContentLoaded", () => {
+        const today = new Date().toLocaleDateString();
+        document.getElementById("currentDate").textContent = today;
+
+        // Update rating display
+        document.getElementById("moodRating").addEventListener("input", function() {
+            document.getElementById("ratingDisplay").textContent = this.value;
+        });
+
+        lucide.createIcons();
+    });
+
+    function selectMood(button) {
+        document.querySelectorAll('.mood-button').forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+        selectedMood = button.getAttribute('data-mood');
+    }
+
+    function saveMood() {
+        const mood = selectedMood;
+        const rating = document.getElementById("moodRating").value;
+        const note = document.getElementById("moodNote").value.trim();
+
+        if (!mood) {
+            alert("⚠️ Please select a mood before saving.");
+            return;
+        }
+
+        const moodTagClass = mood.replace(/\s+/g, '-'); // calm → calm, low energy → low-energy
+
+        const moodEntry = document.createElement('div');
+        moodEntry.className = 'history-item';
+        moodEntry.innerHTML = `
+            <span>${mood} — ${note || 'No notes.'}</span>
+            <span class="mood-tag ${moodTagClass}">${mood} (${rating}/5)</span>
+        `;
+        const historyList = document.getElementById("moodHistoryList");
+        historyList.prepend(moodEntry);
+
+        // Reset form
+        document.querySelectorAll('.mood-button').forEach(btn => btn.classList.remove('selected'));
+        document.getElementById("moodRating").value = 3;
+        document.getElementById("ratingDisplay").textContent = 3;
+        document.getElementById("moodNote").value = "";
+        selectedMood = null;
+
+        alert("✅ Mood saved!");
+    }
+</script>
+
+</body>
+</html>

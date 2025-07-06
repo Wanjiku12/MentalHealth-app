@@ -3,123 +3,179 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Customer Care Panel - Tulia</title>
+    <title>Admin Panel - Tulia</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
     <style>
-        body {
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to bottom, #f596c6, #f290d1);
-            color: rgb(246, 243, 245);
+        @import url(' https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
-
+        body {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fbc2eb 100%);
+            color: #2d2d2d;
+            min-height: 100vh;
+        }
         header {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.10);
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 2px 20px rgba(236, 72, 153, 0.10);
         }
-
         .logo h2 {
-            color: #e627b0;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 0;
         }
-
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 2rem;
         }
-
         nav ul li a {
             text-decoration: none;
-            color: #666;
-            font-size: 16px;
-            transition: color 0.3s ease;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
         }
-
         nav ul li a:hover {
-            color: #ff69b4;
+            color: #ec4899;
         }
-
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
         main {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
-
         section {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px 20px 28px 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.10);
+            border: 1px solid rgba(236, 72, 153, 0.10);
         }
-
         h2 {
             margin-top: 0;
-            color: #fff;
+            color: #ec4899;
+            font-size: 2rem;
+            font-weight: 700;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            overflow: hidden;
         }
-
         th, td {
-            padding: 10px;
+            padding: 12px 10px;
             text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(236, 72, 153, 0.10);
+            color: #374151;
         }
-
-        select, button {
-            padding: 8px 12px;
-            font-size: 14px;
-            border-radius: 5px;
+        th {
+            background: #fdf2f8;
+            color: #ec4899;
+            font-weight: 600;
+        }
+        select, button, input[type="text"], input[type="number"] {
+            padding: 10px 16px;
+            font-size: 1rem;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
+            font-weight: 500;
+            margin: 5px 0;
         }
-
         select {
-            margin-bottom: 10px;
+            background: #fff0f6;
+            color: #ec4899;
+            border: 1px solid #fbc2eb;
         }
-
         button {
-            background: #ff69b4;
+            background: linear-gradient(to right, #f472b6, #ec4899);
             color: white;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(236, 72, 153, 0.10);
         }
-
         button:hover {
-            background: #c71585;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
         }
-
         .ticket-details {
             margin-top: 20px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
+            border-radius: 12px;
         }
-
         .status-badge {
-            padding: 5px 10px;
+            padding: 5px 14px;
             border-radius: 15px;
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 600;
         }
-
         .open { background: #ffd700; color: #000; }
-        .in-progress { background: #1e90ff; }
-        .resolved { background: #32cd32; }
-
+        .in-progress { background: #1e90ff; color: #fff; }
+        .resolved { background: #32cd32; color: #fff; }
         footer {
             text-align: center;
             padding: 20px;
             background: rgba(0, 0, 0, 0.8);
             color: white;
+            border-radius: 24px 24px 0 0;
+            margin-top: 40px;
+        }
+
+        /* New Admin Sections */
+        .admin-section {
+            margin-bottom: 30px;
+        }
+        .admin-section h3 {
+            font-size: 1.5rem;
+            color: #ec4899;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #fbc2eb;
+            resize: vertical;
+        }
+        .activity-log {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -142,77 +198,66 @@
 
 <!-- Main Content -->
 <main>
-    <!-- Support Tickets -->
-    <section>
-        <h2>📬 Support Requests</h2>
-        <select id="filterCategory" onchange="filterTickets()">
-            <option value="">All Categories</option>
-            <option value="technical">Technical</option>
-            <option value="scheduling">Therapy Scheduling</option>
-            <option value="login">Login Support</option>
-        </select>
 
-        <table id="ticketsTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>User ID</th>
-                    <th>Category</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Timestamp</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Sample Tickets -->
-                <tr data-category="technical" data-status="open">
-                    <td>#1001</td>
-                    <td>P0045</td>
-                    <td>Technical</td>
-                    <td>Can't join video session</td>
-                    <td><span class="status-badge open">Open</span></td>
-                    <td>2025-06-28 09:30 AM</td>
-                    <td><button onclick="viewTicket(this)">View</button></td>
-                </tr>
-                <tr data-category="login" data-status="in-progress">
-                    <td>#1002</td>
-                    <td>P0021</td>
-                    <td>Login</td>
-                    <td>Forgot password</td>
-                    <td><span class="status-badge in-progress">In Progress</span></td>
-                    <td>2025-06-28 10:15 AM</td>
-                    <td><button onclick="viewTicket(this)">View</button></td>
-                </tr>
-                <tr data-category="scheduling" data-status="resolved">
-                    <td>#1003</td>
-                    <td>P0032</td>
-                    <td>Scheduling</td>
-                    <td>Session rescheduled successfully</td>
-                    <td><span class="status-badge resolved">Resolved</span></td>
-                    <td>2025-06-28 11:00 AM</td>
-                    <td><button onclick="viewTicket(this)">View</button></td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- System Updates Section -->
+    <section class="admin-section">
+        <h3>🛠️ Make System Updates</h3>
+        <p>Update application settings or push patches to the system.</p>
+        <form id="systemUpdateForm">
+            <label for="updateTitle">Update Title</label>
+            <input type="text" id="updateTitle" placeholder="e.g., Patch v1.0.1 - Bug Fix" required />
+
+            <label for="updateDescription">Update Description</label>
+            <textarea id="updateDescription" rows="4" placeholder="Describe what this update does..."></textarea>
+
+            <button type="submit">Publish Update</button>
+        </form>
     </section>
 
-    <!-- Ticket Details Modal -->
-    <section id="ticketDetails" class="ticket-details" style="display: none;">
-        <h3>🔍 Ticket Details</h3>
-        <p><strong>Category:</strong> <span id="detailCategory"></span></p>
-        <p><strong>Description:</strong> <span id="detailDescription">User reported difficulty joining video session.</span></p>
-        <p><strong>Metadata:</strong> <span id="detailMetadata">Error code: 403, Session link expired</span></p>
-        <p><strong>Status:</strong> <span id="detailStatus"><span class="status-badge open">Open</span></span></p>
-        <textarea id="responseMessage" placeholder="Write response..."></textarea>
-        <select id="assignTo">
-            <option value="">Assign To</option>
-            <option value="admin">Admin</option>
-            <option value="therapist">Therapist</option>
-        </select>
-        <button onclick="submitResponse()">Submit Response</button>
-        <button onclick="resolveTicket()">Mark as Resolved</button>
+    <!-- Add New Feature Section -->
+    <section class="admin-section">
+        <h3>🧩 Add New Feature</h3>
+        <p>Add new functionality or tools to enhance the platform experience.</p>
+        <form id="addFeatureForm">
+            <label for="featureName">Feature Name</label>
+            <input type="text" id="featureName" placeholder="e.g., AI Mood Analysis Tool" required />
+
+            <label for="featureDesc">Feature Description</label>
+            <textarea id="featureDesc" rows="4" placeholder="Brief description of the feature and its use case."></textarea>
+
+            <label for="featureType">Feature Type</label>
+            <select id="featureType">
+                <option value="">Select Feature Type</option>
+                <option value="therapy">Therapy</option>
+                <option value="wellness">Wellness Tools</option>
+                <option value="security">Security</option>
+                <option value="language">Language Support</option>
+            </select>
+
+            <button type="submit">Add Feature</button>
+        </form>
     </section>
+
+    <!-- Monitor User Activity Section -->
+    <section class="admin-section">
+        <h3>👁️ Monitor User Activity</h3>
+        <p>Anonymized logs of recent user actions across the platform.</p>
+
+        <div class="activity-log">
+            <strong>[2025-07-05 10:15 AM]</strong> — Anonymous user viewed mood tracker.
+        </div>
+        <div class="activity-log">
+            <strong>[2025-07-05 10:10 AM]</strong> — Anonymous user accessed journaling tool.
+        </div>
+        <div class="activity-log">
+            <strong>[2025-07-05 10:05 AM]</strong> — Therapist logged in successfully.
+        </div>
+        <div class="activity-log">
+            <strong>[2025-07-05 09:50 AM]</strong> — Failed login attempt from IP: 192.168.1.1
+        </div>
+        <button onclick="refreshActivity()">Refresh Logs</button>
+    </section>
+
 </main>
 
 <!-- Footer -->
@@ -221,56 +266,50 @@
 </footer>
 
 <script>
-    function filterTickets() {
-        const category = document.getElementById("filterCategory").value;
-        const rows = document.querySelectorAll("#ticketsTable tbody tr");
+    // Submit system update
+    document.getElementById("systemUpdateForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const title = document.getElementById("updateTitle").value.trim();
+        const desc = document.getElementById("updateDescription").value.trim();
 
-        rows.forEach(row => {
-            if (!category || row.getAttribute("data-category") === category) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    }
-
-    function viewTicket(button) {
-        const row = button.closest("tr");
-        const cells = row.getElementsByTagName("td");
-
-        document.getElementById("detailCategory").textContent = cells[2].textContent;
-        document.getElementById("detailDescription").textContent = cells[3].textContent;
-        document.getElementById("detailMetadata").textContent = "Error code: 403, Session link expired";
-
-        const statusText = cells[4].querySelector(".status-badge").textContent;
-        const statusClass = cells[4].querySelector(".status-badge").className;
-
-        document.getElementById("detailStatus").innerHTML = `<span class="status-badge ${statusClass}">${statusText}</span>`;
-        document.getElementById("ticketDetails").style.display = "block";
-    }
-
-    function submitResponse() {
-        const message = document.getElementById("responseMessage").value.trim();
-        const assignTo = document.getElementById("assignTo").value;
-
-        if (!message) {
-            alert("⚠️ Please write a response before submitting.");
+        if (!title || !desc) {
+            alert("⚠️ Please fill in both fields.");
             return;
         }
 
-        alert(`✅ Response sent. Assigned to: ${assignTo || 'no one'}`);
-        document.getElementById("responseMessage").value = "";
-        document.getElementById("assignTo").value = "";
-    }
+        alert("✅ System update published!");
+        this.reset();
+    });
 
-    function resolveTicket() {
-        if (confirm("Are you sure you want to mark this ticket as resolved?")) {
-            document.querySelector("#detailStatus .status-badge")
-                .classList.replace("open", "resolved")
-                .classList.replace("in-progress", "resolved");
-            document.querySelector("#detailStatus .status-badge").textContent = "Resolved";
-            alert("✅ Ticket marked as resolved.");
+    // Submit new feature
+    document.getElementById("addFeatureForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("featureName").value.trim();
+        const desc = document.getElementById("featureDesc").value.trim();
+        const type = document.getElementById("featureType").value;
+
+        if (!name || !desc || !type) {
+            alert("⚠️ Please complete all fields.");
+            return;
         }
+
+        alert(`✅ Feature "${name}" added under ${type} category.`);
+        this.reset();
+    });
+
+    // Refresh anonymized logs
+    function refreshActivity() {
+        const container = document.querySelectorAll(".activity-log");
+        const newLogs = [
+            `<strong>[${new Date().toLocaleTimeString()}]</strong> — Anonymous user viewed dashboard.`,
+            `<strong>[${new Date().toLocaleTimeString()}]</strong> — User updated profile info.`,
+            `<strong>[${new Date().toLocaleTimeString()}]</strong> — Feature 'Mood Tracker' used.`,
+            `<strong>[${new Date().toLocaleTimeString()}]</strong> — Login successful from new device.`
+        ];
+
+        container.forEach((log, i) => {
+            if (i < newLogs.length) log.innerHTML = newLogs[i];
+        });
     }
 </script>
 
