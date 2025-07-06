@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapists | Tulia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="therapist.css">
+    <style>
+        body {
+            background: #fff6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            color: #3a3a3a;
+        }
+        .navbar {
+            background: #ff69b4;
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffe4f0;
+        }
+        .therapist-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(255, 105, 180, 0.10);
+            padding: 2.5rem 2rem;
+        }
+        .therapist-title {
+            font-size: 2.2rem;
+            color: #ff69b4;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .therapist-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .therapist-card {
+            background: #fff6fa;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+            padding: 1.5rem 1.2rem;
+            width: 260px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .therapist-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.15);
+        }
+        .therapist-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #ff69b4;
+        }
+        .therapist-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff69b4;
+        }
+        .therapist-role {
+            font-size: 1rem;
+            color: #3a3a3a;
+            margin-bottom: 0.5rem;
+        }
+        .therapist-desc {
+            font-size: 0.98rem;
+            color: #6d6d6d;
+            margin-bottom: 1.2rem;
+        }
+        .start-chat-btn {
+            background: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .start-chat-btn:hover {
+            background: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Tulia</h1>
+        <div class="nav-links">
+            <a href="Home page/index.html">Home</a>
+            <a href="About page/about.html">About Us</a>
+            <a href="Journal page/journal.html">My Journal</a>
+            <a href="moodtracker.html">Mood Tracker</a>
+            <a href="therapist.html">Therapy Connect</a>
+            <a href="Contact page/contactpage.html">Contact Us</a>
+        </div>
+    </div>
+    <section class="therapist-section">
+        <div class="therapist-title">Meet Our Therapists</div>
+        <div class="therapist-list">
+            <div class="therapist-card">
+                <img class="therapist-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Amina Odhiambo">
+                <div class="therapist-name">Dr. Amina Odhiambo</div>
+                <div class="therapist-role">Clinical Psychologist</div>
+                <div class="therapist-desc">Specializes in cognitive behavioral therapy and trauma recovery. Fluent in English and Swahili.</div>
+                <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html'">Start Chat</button>
+            </div>
+            <div class="therapist-card">
+                <img class="therapist-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mr. Samuel Kimani">
+                <div class="therapist-name">Mr. Samuel Kimani</div>
+                <div class="therapist-role">Counseling Psychologist</div>
+                <div class="therapist-desc">Focuses on youth mental health, stress management, and family therapy. Fluent in English and Kikuyu.</div>
+                <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html'">Start Chat</button>
+            </div>
+            <div class="therapist-card">
+                <img class="therapist-avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ms. Grace Wanjiru">
+                <div class="therapist-name">Ms. Grace Wanjiru</div>
+                <div class="therapist-role">Child & Adolescent Therapist</div>
+                <div class="therapist-desc">Expert in play therapy and adolescent counseling. Fluent in English and Kiswahili.</div>
+                <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html'">Start Chat</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html> 

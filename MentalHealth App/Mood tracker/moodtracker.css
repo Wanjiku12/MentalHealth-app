@@ -1,0 +1,187 @@
+/*Google font CDN link*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+}
+body {
+    background: #fff6fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    color: #3a3a3a;
+}
+.navbar{
+    margin: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 15px 30px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar h1{
+    color: #ff2d92;
+    margin-right: 50px;
+}
+.nav-links{
+    display: flex;
+}
+.nav-links a{
+    margin-left: 30px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.mood-section {
+    max-width: 500px;
+    margin: 3rem auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(255, 105, 180, 0.10);
+    padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.mood-title {
+    font-size: 2rem;
+    color: #ff69b4;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.mood-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.mood-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    justify-content: center;
+}
+
+.mood-options label {
+    background: #fff6fa;
+    border: 1.5px solid #ff69b4;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+    color: #ff69b4;
+    cursor: pointer;
+    transition: background 0.2s, border 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mood-options input[type="radio"] {
+    accent-color: #ff69b4;
+    margin-right: 0.4rem;
+}
+
+.mood-options label:hover, .mood-options input[type="radio"]:checked + label {
+    background: #ffe4f0;
+    border: 2px solid #ff69b4;
+}
+
+.mood-note {
+    border-radius: 8px;
+    border: 1.5px solid #ff69b4;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+    color: #3a3a3a;
+    min-height: 60px;
+    resize: vertical;
+    transition: border 0.2s;
+}
+
+.mood-note:focus {
+    border: 2px solid #ff1493;
+}
+
+.mood-submit-btn {
+    background: #ff69b4;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.mood-submit-btn:hover {
+    background: #ff1493;
+}
+
+.mood-history-title {
+    font-size: 1.2rem;
+    color: #ff69b4;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.mood-history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.mood-history-item {
+    background: #fff6fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.06);
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.05rem;
+    color: #3a3a3a;
+    flex-wrap: wrap;
+}
+
+.mood-emoji {
+    font-size: 1.5rem;
+}
+
+.mood-label {
+    font-weight: 600;
+    color: #ff69b4;
+}
+
+.mood-date {
+    font-size: 0.95rem;
+    color: #888;
+    margin-left: auto;
+}
+
+.mood-note-history {
+    width: 100%;
+    font-size: 0.98rem;
+    color: #6d6d6d;
+    margin-top: 0.2rem;
+    margin-left: 2.2rem;
+}
+
+.empty-history {
+    text-align: center;
+    color: #bbb;
+    font-style: italic;
+    padding: 1rem 0;
+} 

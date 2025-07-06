@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker | Tulia</title>
+    <link rel="stylesheet" href="moodtracker.css">
+</head>
+<body>
+    <div class="navbar">
+        <h1>Tulia</h1>
+        <div class="nav-links">
+            <a href="../Home page/index.html">Home</a>
+            <a href="../About page/about.html">About Us</a>
+            <a href="../Journal page/journal.html">My Journal</a>
+            <a href="moodtracker.html">Mood Tracker</a>
+            <a href="therapist.html">Therapy Connect</a>
+            <a href="../Contact page/contactpage.html">Contact Us</a>
+        </div>
+    </div>
+    <section class="mood-section"> 
+        <div class="mood-title">How are you feeling today?</div>
+        <form id="moodForm" class="mood-form">
+            <div class="mood-options">
+                <label><input type="radio" name="mood" value="Happy" required>😊 Happy</label>
+                <label><input type="radio" name="mood" value="Sad">😢 Sad</label>
+                <label><input type="radio" name="mood" value="Anxious">😰 Anxious</label>
+                <label><input type="radio" name="mood" value="Angry">😡 Angry</label>
+                <label><input type="radio" name="mood" value="Calm">😌 Calm</label>
+                <label><input type="radio" name="mood" value="Excited">🤩 Excited</label>
+            </div>
+            <textarea name="note" class="mood-note" placeholder="Add a note (optional)..."></textarea>
+            <button type="submit" class="mood-submit-btn">Log Mood</button>
+        </form>
+        <div class="mood-history-title">Mood History</div>
+        <ul id="moodHistory" class="mood-history-list"></ul>
+    </section>
+    <script>
+        // Mood tracker logic with localStorage
+        const moodForm = document.getElementById('moodForm');
+        const moodHistory = document.getElementById('moodHistory');
+
+        function getMoodLogs() {
+            return JSON.parse(localStorage.getItem('moodLogs') || '[]');
+        }
+
+        function saveMoodLogs(logs) {
+            localStorage.setItem('moodLogs', JSON.stringify(logs));
+        }
+
+        function renderMoodHistory() {
+            const logs = getMoodLogs();
+            moodHistory.innerHTML = '';
+            if (logs.length === 0) {
+                moodHistory.innerHTML = '<li class="empty-history">No moods logged yet.</li>';
+                return;
+            }
+            logs.slice().reverse().forEach(log => {
+                const li = document.createElement('li');
+                li.className = 'mood-history-item';
+                li.innerHTML = `<span class="mood-emoji">${log.emoji}</span> <span class="mood-label">${log.mood}</span> <span class="mood-date">${log.date}</span>${log.note ? `<div class='mood-note-history'>${log.note}</div>` : ''}`;
+                moodHistory.appendChild(li);
+            });
+        }
+
+        function getEmoji(mood) {
+            switch(mood) {
+                case 'Happy': return '😊';
+                case 'Sad': return '😢';
+                case 'Anxious': return '😰';
+                case 'Angry': return '😡';
+                case 'Calm': return '😌';
+                case 'Excited': return '🤩';
+                default: return '🙂';
+            }
+        }
+
+        moodForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(moodForm);
+            const mood = formData.get('mood');
+            const note = formData.get('note').trim();
+            const date = new Date().toLocaleString();
+            const emoji = getEmoji(mood);
+            const logs = getMoodLogs();
+            logs.push({ mood, note, date, emoji });
+            saveMoodLogs(logs);
+            renderMoodHistory();
+            moodForm.reset();
+        });
+
+        // Initial render
+        renderMoodHistory();
+    </script>
+</body>
+</html> 
