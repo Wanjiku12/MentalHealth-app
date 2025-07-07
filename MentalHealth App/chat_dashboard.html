@@ -7,143 +7,158 @@
     <title>Chat Panel - Tulia</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(to bottom, #ff69b4, #c71585);
-            color: white;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
-
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8, #fbc2eb);
+            color: #2d2d2d;
+            min-height: 100vh;
+        }
         header {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            border-bottom: 1px solid rgba(236, 72, 153, 0.10);
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 2px 20px rgba(236, 72, 153, 0.10);
         }
-
         .logo h2 {
-            color: #c71585;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 0;
         }
-
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 2rem;
         }
-
         nav ul li a {
             text-decoration: none;
-            color: #666;
-            font-size: 16px;
-            transition: color 0.3s ease;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
         }
-
         nav ul li a:hover {
-            color: #ff69b4;
+            color: #ec4899;
         }
-
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
         main {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
-
-        section {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
+        .chat-glass {
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.15);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 24px;
+            border: 1.5px solid rgba(236, 72, 153, 0.18);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
         }
-
-        h2 {
-            margin-top: 0;
+        .chat-header {
+            font-size: 1.7rem;
+            color: #ec4899;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        #chat-window {
+            min-height: 260px;
+            max-height: 340px;
+            overflow-y: auto;
+            background: rgba(255,255,255,0.25);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 2px 8px rgba(236, 72, 153, 0.08);
+        }
+        .chat-bubble {
+            max-width: 70%;
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 18px;
+            word-break: break-word;
+            background: #fff6fa;
+            color: #ec4899;
+            align-self: flex-start;
+            box-shadow: 0 2px 6px rgba(236, 72, 153, 0.08);
+            display: inline-block;
+        }
+        .chat-bubble.me {
+            background: linear-gradient(90deg, #ec4899 60%, #fbc2eb 100%);
             color: #fff;
+            align-self: flex-end;
         }
-
-        /* Journal Section */
-        textarea {
-            width: 100%;
-            height: 120px;
-            padding: 10px;
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            resize: vertical;
+        .chat-input-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
         }
-
-        button {
-            background: #ff69b4;
+        #chatInput {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 1.5px solid #ec4899;
+            font-size: 1rem;
+            outline: none;
+            background: #fff;
+            color: #3a3a3a;
+            transition: border 0.2s;
+        }
+        #chatInput:focus {
+            border: 2px solid #db2777;
+        }
+        button.send-btn {
+            background: linear-gradient(to right, #f472b6, #ec4899);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 10px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            transition: all 0.2s;
         }
-
-        button:hover {
-            background: #c71585;
+        button.send-btn:hover {
+            background: linear-gradient(to right, #ec4899, #db2777);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(236, 72, 153, 0.15);
         }
-
-        /* Mood Tracker */
-        .mood-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .mood-buttons button {
-            flex: 1;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .selected-mood {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        /* Therapy Section */
-        .therapy-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        input[type="datetime-local"] {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        .session-link {
-            color: #fff;
-            text-decoration: underline;
-            margin-top: 10px;
-        }
-
-        /* Language Selector */
-        select#languageSelector {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        footer {
+        .footer {
             text-align: center;
             padding: 20px;
             background: rgba(0, 0, 0, 0.8);
             color: white;
+            border-radius: 24px 24px 0 0;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -159,49 +174,37 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="login.html">Logout</a></li>
+                <li><a href="journal.html">My Journal</a></li>
+                <li><a href="moodtracker.html">Mood Tracker</a></li>
+                <li><a href="therapist.html">Therapy Connect</a></li>
+                <li><a href="contactpage.html">Contact Us</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Chat -->
-        <section id="chat-section">
-            <h2>📝 Chat</h2>
-            <div id="chat-window" style="height: 300px; overflow-y: auto; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 10px; margin-bottom: 10px;">
+        <section class="chat-glass">
+            <div class="chat-header">Therapy Chat</div>
+            <div id="chat-window">
                 <!-- Chat bubbles will appear here -->
             </div>
-            <div style="display: flex; gap: 10px;">
-                <input id="chatInput" type="text" placeholder="Type your message..." style="flex: 1; padding: 10px; border-radius: 5px; border: none; font-size: 16px;">
-                <button onclick="sendChatMessage()">Send</button>
+            <div class="chat-input-row">
+                <input id="chatInput" type="text" placeholder="Type your message...">
+                <button class="send-btn" onclick="sendChatMessage()">Send</button>
             </div>
-        </section>
-
-        <!-- Language Selection -->
-        <section>
-            <h2>🌍 Change App Language</h2>
-            <select id="languageSelector" onchange="changeLanguage()">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="hi">हिंदी</option>
-            </select>
-            <p id="languageStatus" style="margin-top: 10px;"></p>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer>
+    <div class="footer">
         <p>&copy; 2025 Tulia. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <script>
         // Connect to Socket.IO server
         const socket = io('http://localhost:3000');
-
         const chatWindow = document.getElementById('chat-window');
         const chatInput = document.getElementById('chatInput');
 
@@ -223,17 +226,8 @@
         // Add chat bubble to UI
         function addChatBubble(message, sender) {
             const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble' + (sender === 'me' ? ' me' : '');
             bubble.textContent = message;
-            bubble.style.maxWidth = '70%';
-            bubble.style.margin = '8px 0';
-            bubble.style.padding = '10px 15px';
-            bubble.style.borderRadius = '18px';
-            bubble.style.wordBreak = 'break-word';
-            bubble.style.background = sender === 'me' ? '#ff69b4' : '#fff';
-            bubble.style.color = sender === 'me' ? '#fff' : '#c71585';
-            bubble.style.alignSelf = sender === 'me' ? 'flex-end' : 'flex-start';
-            bubble.style.boxShadow = '0 2px 6px rgba(0,0,0,0.08)';
-            bubble.style.display = 'inline-block';
 
             const wrapper = document.createElement('div');
             wrapper.style.display = 'flex';
@@ -248,72 +242,6 @@
         chatInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') sendChatMessage();
         });
-
-        // Change language
-        function changeLanguage() {
-            const lang = document.getElementById("languageSelector").value;
-            const translations = {
-                en: {
-                    journal: "Digital Journal",
-                    mood: "Mood Tracker",
-                    therapy: "Anonymous Therapy Session",
-                    language: "Change App Language",
-                    statusSaved: "✅ Journal saved!",
-                    statusEmpty: "⚠️ Please write something before saving.",
-                    moodText: "How are you feeling today?",
-                    scheduleBtn: "Schedule Session",
-                    cancelBtn: "Cancel Session",
-                    langStatus: "Language changed."
-                },
-                es: {
-                    journal: "Diario Digital",
-                    mood: "Seguimiento del Estado de Ánimo",
-                    therapy: "Sesión de Terapia Anónima",
-                    language: "Cambiar Idioma de la Aplicación",
-                    statusSaved: "✅ Diario guardado.",
-                    statusEmpty: "⚠️ Por favor escribe algo antes de guardar.",
-                    moodText: "¿Cómo te sientes hoy?",
-                    scheduleBtn: "Programar Sesión",
-                    cancelBtn: "Cancelar Sesión",
-                    langStatus: "Idioma cambiado."
-                },
-                fr: {
-                    journal: "Journal Numérique",
-                    mood: "Suivi de l'humeur",
-                    therapy: "Séance de Thérapie Anonyme",
-                    language: "Changer la langue de l'application",
-                    statusSaved: "✅ Journal enregistré !",
-                    statusEmpty: "⚠️ Veuillez écrire quelque chose avant d'enregistrer.",
-                    moodText: "Comment vous sentez-vous aujourd'hui ?",
-                    scheduleBtn: "Planifier une séance",
-                    cancelBtn: "Annuler la séance",
-                    langStatus: "Langue modifiée."
-                },
-                hi: {
-                    journal: "डिजिटल जर्नल",
-                    mood: "मूड ट्रैकर",
-                    therapy: "गुमनाम परामर्श सत्र",
-                    language: "ऐप की भाषा बदलें",
-                    statusSaved: "✅ जर्नल सहेजा गया!",
-                    statusEmpty: "⚠️ सहेजने से पहले कुछ लिखें।",
-                    moodText: "आज आप कैसा महसूस कर रहे हैं?",
-                    scheduleBtn: "सत्र निर्धारित करें",
-                    cancelBtn: "सत्र रद्द करें",
-                    langStatus: "भाषा बदल गई।"
-                }
-            };
-
-            document.querySelector("section:nth-child(1) h2").textContent = translations[lang].journal;
-            document.querySelector("section:nth-child(2) h2").textContent = translations[lang].mood;
-            document.querySelector("section:nth-child(2) p").textContent = translations[lang].moodText;
-            document.querySelector("section:nth-child(3) h2").textContent = translations[lang].therapy;
-            document.querySelector("section:nth-child(4) h2").textContent = translations[lang].language;
-            document.querySelectorAll("button")[0].textContent = translations[lang].statusSaved.split(" ")[1];
-            document.querySelectorAll("button")[1].textContent = translations[lang].scheduleBtn;
-            document.querySelectorAll("button")[2].textContent = translations[lang].cancelBtn;
-
-            document.getElementById("languageStatus").textContent = translations[lang].langStatus;
-        }
     </script>
 
 </body>
