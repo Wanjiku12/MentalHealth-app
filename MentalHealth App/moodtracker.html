@@ -18,55 +18,28 @@
             color: #2d2d2d;
             min-height: 100vh;
         }
-        header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(16px);
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(236, 72, 153, 0.10);
-            border-radius: 0 0 24px 24px;
-            box-shadow: 0 2px 20px rgba(236, 72, 153, 0.10);
-        }
-        .logo h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #ec4899, #db2777);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .navbar{
             margin: 0;
-        }
-        nav ul {
-            list-style: none;
             display: flex;
-            gap: 2rem;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #6b7280;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-        nav ul li a:hover {
-            color: #ec4899;
-        }
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, #ec4899, #db2777);
-            transition: width 0.3s;
-        }
-        nav ul li a:hover::after {
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 15px 30px;
             width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+        .navbar h1{
+            color: #ff2d92;
+            margin-right: 50px;
+            margin-bottom: 5px;
+        }
+        .nav-links a{
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
         main {
             max-width: 1100px;
             margin: 40px auto;
@@ -202,18 +175,18 @@
 
 <!-- Header -->
 <header>
-    <div class="logo">
-        <h2>Tulia</h2>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="journal.html">My Journal</a></li>
-            <li><a href="moodtracker.html">Mood Tracker</a></li>
-            <li><a href="therapist.html">Therapy Connect</a></li>
-            <li><a href="contactpage.html">Contact Us</a></li>
-    </nav>
+    <div class="navbar">
+        <h1>Tulia</h1>
+         <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="journal.html">My Journal</a>
+            <a href="moodtracker.html">Mood Tracker</a>
+            <a href="therapist.html">Therapy Connect</a>
+            <a href="contactpage.html">Contact Us</a>
+         </div>
+    </div> 
+
 </header>
 
 <!-- Main Content -->

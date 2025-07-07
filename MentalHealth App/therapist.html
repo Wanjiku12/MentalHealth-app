@@ -5,45 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Therapists | Tulia</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="therapist.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
         body {
-            background: #fff6fa;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            color: #3a3a3a;
+            background: linear-gradient(135deg, #fdf2f8, #fbc2eb);
+            color: #2d2d2d;
+            min-height: 100vh;
         }
-        .navbar {
-            background: #ff69b4;
-            color: #fff;
-            padding: 1rem 2rem;
+        .navbar{
+            margin: 0;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+            background: white;
+            padding: 15px 30px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .navbar h1 {
-            margin: 0;
-            font-size: 2rem;
-            letter-spacing: 2px;
+        .navbar h1{
+            color: #ff2d92;
+            margin-right: 50px;
+            margin-bottom: 5px;
         }
-        .nav-links a {
-            color: #fff;
+        .nav-links a{
+            margin-left: 20px;
             text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            color: #333;
+            font-weight: bold;
         }
-        .nav-links a:hover {
-            color: #ffe4f0;
+
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .glass-section {
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            border: 1.5px solid rgba(236, 72, 153, 0.18);
+            padding: 2.5rem 2rem 2rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .therapy-desc-title {
+            font-size: 2rem;
+            color: #ec4899;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        .therapy-desc-text {
+            font-size: 1.1rem;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 0.5rem;
         }
         .therapist-section {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px rgba(255, 105, 180, 0.10);
-            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.15);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 24px;
+            border: 1.5px solid rgba(236, 72, 153, 0.18);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
         }
         .therapist-title {
             font-size: 2.2rem;
@@ -58,13 +90,14 @@
             justify-content: center;
         }
         .therapist-card {
-            background: #fff6fa;
-            border-radius: 14px;
-            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(255, 105, 180, 0.10);
             padding: 1.5rem 1.2rem;
             width: 260px;
             text-align: center;
             transition: transform 0.2s, box-shadow 0.2s;
+            border: 1.5px solid rgba(236, 72, 153, 0.13);
         }
         .therapist-card:hover {
             transform: translateY(-6px) scale(1.03);
@@ -94,7 +127,7 @@
             margin-bottom: 1.2rem;
         }
         .start-chat-btn {
-            background: #ff69b4;
+            background: linear-gradient(to right, #f472b6, #ec4899);
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -102,50 +135,70 @@
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s;
+            transition:0.2s ease;
         }
         .start-chat-btn:hover {
-            background: #ff1493;
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 24px 24px 0 0;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <h1>Tulia</h1>
-        <div class="nav-links">
-            <a href="Home page/index.html">Home</a>
-            <a href="About page/about.html">About Us</a>
-            <a href="Journal page/journal.html">My Journal</a>
-            <a href="moodtracker.html">Mood Tracker</a>
-            <a href="therapist.html">Therapy Connect</a>
-            <a href="Contact page/contactpage.html">Contact Us</a>
-        </div>
+    <header>
+        <div class="navbar">
+            <h1>Tulia</h1>
+             <div class="nav-links">
+               <a href="index.html">Home</a>
+               <a href="about.html">About Us</a>
+               <a href="journal.html">My Journal</a>
+               <a href="moodtracker.html">Mood Tracker</a>
+               <a href="therapist.html">Therapy Connect</a>
+               <a href="contactpage.html">Contact Us</a>
+             </div>
+          </div> 
+    </header>
+    <main>
+        <section class="glass-section">
+            <div class="therapy-desc-title">Therapy Connect</div>
+            <div class="therapy-desc-text">
+                Therapy Connect is your safe, confidential space to reach out to professional therapists and receive support for your mental wellbeing. <br>
+                Our platform is designed to break barriers, offering multilingual support and a stigma-free environment. <br>
+                Whether you need to talk, seek advice, or simply be heard, Therapy Connect is here for you—anytime, anywhere.
+            </div>
+        </section>
+        <section class="therapist-section">
+            <div class="therapist-title">Meet Our Therapists</div>
+            <div class="therapist-list">
+                <div class="therapist-card">
+                    <div class="therapist-name">Dr. Amina Odhiambo</div>
+                    <div class="therapist-role">Clinical Psychologist</div>
+                    <div class="therapist-desc">Specializes in cognitive behavioral therapy and trauma recovery. Fluent in English and Swahili.</div>
+                    <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html?therapist=Dr.%20Amina%20Odhiambo'">Start Chat</button>
+                </div>
+                <div class="therapist-card">
+                    <div class="therapist-name">Mr. Samuel Kimani</div>
+                    <div class="therapist-role">Counseling Psychologist</div>
+                    <div class="therapist-desc">Focuses on youth mental health, stress management, and family therapy. Fluent in English and Kikuyu.</div>
+                    <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html?therapist=Mr.%20Samuel%20Kimani'">Start Chat</button>
+                </div>
+                <div class="therapist-card">
+                    <div class="therapist-name">Ms. Grace Wanjiru</div>
+                    <div class="therapist-role">Child & Adolescent Therapist</div>
+                    <div class="therapist-desc">Expert in play therapy and adolescent counseling. Fluent in English and Kiswahili.</div>
+                    <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html?therapist=Ms.%20Grace%20Wanjiru'">Start Chat</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="footer">
+        <p>&copy; 2025 Tulia. All rights reserved.</p>
     </div>
-    <section class="therapist-section">
-        <div class="therapist-title">Meet Our Therapists</div>
-        <div class="therapist-list">
-            <div class="therapist-card">
-                <img class="therapist-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Amina Odhiambo">
-                <div class="therapist-name">Dr. Amina Odhiambo</div>
-                <div class="therapist-role">Clinical Psychologist</div>
-                <div class="therapist-desc">Specializes in cognitive behavioral therapy and trauma recovery. Fluent in English and Swahili.</div>
-                <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html'">Start Chat</button>
-            </div>
-            <div class="therapist-card">
-                <img class="therapist-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mr. Samuel Kimani">
-                <div class="therapist-name">Mr. Samuel Kimani</div>
-                <div class="therapist-role">Counseling Psychologist</div>
-                <div class="therapist-desc">Focuses on youth mental health, stress management, and family therapy. Fluent in English and Kikuyu.</div>
-                <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html'">Start Chat</button>
-            </div>
-            <div class="therapist-card">
-                <img class="therapist-avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ms. Grace Wanjiru">
-                <div class="therapist-name">Ms. Grace Wanjiru</div>
-                <div class="therapist-role">Child & Adolescent Therapist</div>
-                <div class="therapist-desc">Expert in play therapy and adolescent counseling. Fluent in English and Kiswahili.</div>
-                <button class="start-chat-btn" onclick="window.location.href='chat_dashboard.html'">Start Chat</button>
-            </div>
-        </div>
-    </section>
 </body>
 </html> 
