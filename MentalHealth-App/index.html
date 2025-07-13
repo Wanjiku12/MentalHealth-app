@@ -160,6 +160,67 @@
         gap: 1rem;
       }
     }
+    /* Hotline Section Glasmorphism */
+    .hotline-section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0 20px 0;
+    }
+    .hotline-glass {
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 16px;
+      border: 1.5px solid rgba(255, 45, 146, 0.18);
+      padding: 24px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 320px;
+    }
+    .hotline-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #ff2d92;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hotline-title i {
+      color: #ff2d92;
+      font-size: 22px;
+    }
+    .hotline-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      background: #ff2d92;
+      padding: 8px 24px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(255, 45, 146, 0.10);
+      letter-spacing: 2px;
+    }
+    .hotline-desc {
+      font-size: 15px;
+      color: #aeaeae;
+      margin-top: 2px;
+    }
+    @media (max-width: 600px) {
+      .hotline-glass {
+        min-width: 0;
+        width: 90%;
+        padding: 16px 8px;
+      }
+      .hotline-number {
+        font-size: 20px;
+        padding: 6px 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -207,6 +268,15 @@
       <i class="fa-solid fa-language" alt="Multilingual Access"></i>
       <h4>Multilingual Access</h4>
       <p>Switch to your preferred language easily.</p>
+    </div>
+  </div>
+
+  <!-- Hotline Section -->
+  <div class="hotline-section">
+    <div class="hotline-glass">
+      <span class="hotline-title"><i class="fas fa-phone-alt"></i> Befriender's Kenya Helpline</span>
+      <span class="hotline-number">+254 722 178 177</span>
+      <span class="hotline-desc">Available 24/7 for immediate support</span>
     </div>
   </div>
 
