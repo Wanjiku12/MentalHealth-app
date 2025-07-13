@@ -59,10 +59,45 @@
                 </div>
                 
                 <div class="input-group">
-                    <label for="language" data-translate="preferredLanguage">Preferred Language</label>
+                    <label for="user_type" data-translate="role">Role</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="users"></i>
+                        <select id="user_type" name="user_type" required onchange="handleRoleChange()">
+                            <option value="" disabled selected data-translate="selectRole">Select your role</option>
+                            <option value="patient">Patient</option>
+                            <option value="therapist">Therapist</option>
+                            <option value="system_admin">System Admin</option>
+                            <option value="customer_care">Customer Care</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group" id="specializationGroup" style="display:none;">
+                    <label for="specialization" data-translate="specialization">Specialization</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="activity"></i>
+                        <input type="text" id="specialization" name="specialization">
+                    </div>
+                </div>
+                <div class="input-group" id="licenseExpGroup" style="display:none;">
+                    <label for="license_expdate" data-translate="licenseExpDate">License Expiry Date</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="calendar"></i>
+                        <input type="date" id="license_expdate" name="license_expdate">
+                    </div>
+                </div>
+                <div class="input-group" id="adminRoleGroup" style="display:none;">
+                    <label for="admin_role" data-translate="adminRole">Admin Role</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="shield"></i>
+                        <input type="text" id="admin_role" name="admin_role">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="preferred_language" data-translate="preferredLanguage">Preferred Language</label>
                     <div class="input-wrapper">
                         <i data-lucide="globe"></i>
-                        <select id="language" name="language" required onchange="LanguageManager.setLanguage(this.value)">
+                        <select id="preferred_language" name="preferred_language" required onchange="LanguageManager.setLanguage(this.value)">
                             <option value="" disabled selected data-translate="selectLanguage">Select your preferred language</option>
                             <option value="en">English</option>
                             <option value="sw">Kiswahili (Swahili)</option>
@@ -118,8 +153,8 @@
                 </div>
                 
                 <button type="submit" class="signup-btn">
+                    <!-- Form submission is handled by signup.js -->
                     <span data-translate="createAccountTitle">Create Account</span>
-                    <i data-lucide="arrow-right"></i>
                 </button>
             </form>
             
@@ -138,9 +173,15 @@
     <script src="translations.js"></script>
     <script src="signup.js"></script>
     <script>
-        // Initialize language system
+        function handleRoleChange() {
+            const role = document.getElementById('user_type').value;
+            document.getElementById('specializationGroup').style.display = (role === 'therapist') ? 'block' : 'none';
+            document.getElementById('licenseExpGroup').style.display = (role === 'therapist') ? 'block' : 'none';
+            document.getElementById('adminRoleGroup').style.display = (role === 'system_admin') ? 'block' : 'none';
+        }
         document.addEventListener('DOMContentLoaded', function() {
             LanguageManager.init();
+            handleRoleChange();
         });
     </script>
 </body>

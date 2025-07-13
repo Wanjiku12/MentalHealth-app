@@ -173,7 +173,7 @@
        <a href="therapist.html">Therapy Connect</a>
        <a href="contactpage.html">Contact Us</a>
      </div>
-    <button class="login-button" onclick="window.location.href='login.html'">Login</button>
+    <button id="authButton" class="login-button" onclick="window.location.href='login.html'">Login</button>
   </div>
 
   <div class="hero">
@@ -209,6 +209,30 @@
       <p>Switch to your preferred language easily.</p>
     </div>
   </div>
+
+<script>
+// Auth button logic
+function logout() {
+    localStorage.removeItem('currentUsername');
+    localStorage.removeItem('userLanguage');
+    localStorage.removeItem('userToken');
+    window.location.href = 'login.html';
+}
+
+function updateAuthButton() {
+    const authButton = document.getElementById('authButton');
+    const username = localStorage.getItem('currentUsername');
+    const token = localStorage.getItem('userToken');
+    if (username && token) {
+        authButton.textContent = `Logout (${username})`;
+        authButton.onclick = logout;
+    } else {
+        authButton.textContent = 'Login';
+        authButton.onclick = function() { window.location.href = 'login.html'; };
+    }
+}
+document.addEventListener('DOMContentLoaded', updateAuthButton);
+</script>
 
 </body>
 </html>

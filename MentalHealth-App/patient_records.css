@@ -8,9 +8,9 @@
 
 body {
     font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    background: linear-gradient(135deg, #fdf2f8 0%, #fbc2eb 100%);
+    background: linear-gradient(135deg, #fdf2f8, #fbc2eb);
     min-height: 100vh;
-    color: #374151;
+    color: #2d2d2d;
 }
 
 .navbar {
@@ -124,6 +124,7 @@ body {
 .header-content p {
     color: #6b7280;
     font-size: 1.1rem;
+    padding-bottom: 10px;
 }
 
 .add-patient-btn {
@@ -154,7 +155,7 @@ body {
 .search-section {
     display: flex;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
     align-items: center;
 }
 
@@ -532,5 +533,120 @@ body {
     .modal-content {
         margin: 10% auto;
         width: 95%;
+    }
+}
+
+/* Glassmorphism for patient records main content */
+.patient-records-glass {
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 8px 32px 0 rgba(236, 72, 153, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    border: 1.5px solid rgba(236, 72, 153, 0.18);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin: 3rem auto;
+    max-width: 900px;
+}
+
+/* Glassmorphism for controls section */
+.controls {
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 16px 0 rgba(236, 72, 153, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1.2px solid rgba(236, 72, 153, 0.13);
+    padding: 1.2rem 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.controls label {
+    font-weight: 500;
+    color: #ec4899;
+    margin-right: 0.5rem;
+}
+.controls input,
+.controls select,
+.controls button {
+    border-radius: 8px;
+    border: 1.2px solid #ec4899;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.7);
+    color: #2d2d2d;
+    margin-right: 0.5rem;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.controls input:focus,
+.controls select:focus {
+    border: 2px solid #db2777;
+    outline: none;
+}
+.controls button {
+    background: linear-gradient(to right, #f472b6, #ec4899);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.controls button:hover {
+    background: linear-gradient(to right, #ec4899, #db2777);
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.13);
+}
+
+/* Glassmorphism for records table */
+.records-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 24px 0 rgba(236, 72, 153, 0.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+.records-table th, .records-table td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+}
+.records-table th {
+    background: rgba(255, 246, 250, 0.7);
+    color: #ec4899;
+    font-weight: 700;
+    border-bottom: 2px solid #fbc2eb;
+}
+.records-table tr {
+    transition: background 0.2s;
+}
+.records-table tr:hover {
+    background: rgba(252, 194, 235, 0.13);
+}
+.records-table td {
+    border-bottom: 1px solid #fbc2eb;
+    color: #2d2d2d;
+}
+.records-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+    .patient-records-glass {
+        padding: 1.2rem 0.5rem;
+    }
+    .controls {
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 1rem 0.5rem;
+    }
+    .records-table th, .records-table td {
+        padding: 0.7rem 0.5rem;
     }
 } 

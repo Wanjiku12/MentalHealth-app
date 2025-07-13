@@ -184,21 +184,21 @@
 <!-- Main Content -->
 <main>
     <section>
-        <h2>😊 Track Your Mood Today</h2>
+        <h2>Track Your Mood Today</h2>
 
         <!-- Date -->
         <p><strong>Date:</strong> <span id="currentDate"></span></p>
 
         <!-- Emotional State Buttons -->
         <div class="mood-buttons">
-            <button class="mood-button" onclick="selectMood(this)" data-mood="calm">Calm</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="energized">Energized</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="hopeful">Hopeful</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="low energy">Low Energy</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="gloomy">Gloomy</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="triggered">Triggered</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="obsessive thoughts">Obsessive Thoughts</button>
-            <button class="mood-button" onclick="selectMood(this)" data-mood="mood swings">Mood Swings</button>
+            <button class="mood-button" data-mood="calm">Calm</button>
+            <button class="mood-button" data-mood="energized">Energized</button>
+            <button class="mood-button" data-mood="hopeful">Hopeful</button>
+            <button class="mood-button" data-mood="low energy">Low Energy</button>
+            <button class="mood-button" data-mood="gloomy">Gloomy</button>
+            <button class="mood-button" data-mood="triggered">Triggered</button>
+            <button class="mood-button" data-mood="obsessive thoughts">Obsessive Thoughts</button>
+            <button class="mood-button" data-mood="mood swings">Mood Swings</button>
         </div>
 
         <!-- Mood Intensity Scale -->
@@ -212,7 +212,7 @@
         <textarea id="moodNote" rows="4" placeholder="Write about what you're feeling..."></textarea>
 
         <!-- Save Button -->
-        <button class="save-btn" onclick="saveMood()">Save My Mood</button>
+        <button class="save-btn" id="saveMoodBtn">Save My Mood</button>
     </section>
 
     <!-- Recent Moods Section -->
@@ -225,58 +225,17 @@
     </section>
 </main>
 
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="moodtracker.js"></script>
 <script>
-    let selectedMood = null;
-
-    // Set current date
-    document.addEventListener("DOMContentLoaded", () => {
-        const today = new Date().toLocaleDateString();
-        document.getElementById("currentDate").textContent = today;
-
-        // Update rating display
-        document.getElementById("moodRating").addEventListener("input", function() {
-            document.getElementById("ratingDisplay").textContent = this.value;
+// Remove inline selectMood and saveMood, wire up with JS
+// Mood button event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.mood-button').forEach(btn => {
+            btn.addEventListener('click', function() { selectMood(this); });
         });
-
-        lucide.createIcons();
+        document.getElementById('saveMoodBtn').addEventListener('click', saveMood);
     });
-
-    function selectMood(button) {
-        document.querySelectorAll('.mood-button').forEach(btn => btn.classList.remove('selected'));
-        button.classList.add('selected');
-        selectedMood = button.getAttribute('data-mood');
-    }
-
-    function saveMood() {
-        const mood = selectedMood;
-        const rating = document.getElementById("moodRating").value;
-        const note = document.getElementById("moodNote").value.trim();
-
-        if (!mood) {
-            alert("⚠️ Please select a mood before saving.");
-            return;
-        }
-
-        const moodTagClass = mood.replace(/\s+/g, '-'); // calm → calm, low energy → low-energy
-
-        const moodEntry = document.createElement('div');
-        moodEntry.className = 'history-item';
-        moodEntry.innerHTML = `
-            <span>${mood} — ${note || 'No notes.'}</span>
-            <span class="mood-tag ${moodTagClass}">${mood} (${rating}/5)</span>
-        `;
-        const historyList = document.getElementById("moodHistoryList");
-        historyList.prepend(moodEntry);
-
-        // Reset form
-        document.querySelectorAll('.mood-button').forEach(btn => btn.classList.remove('selected'));
-        document.getElementById("moodRating").value = 3;
-        document.getElementById("ratingDisplay").textContent = 3;
-        document.getElementById("moodNote").value = "";
-        selectedMood = null;
-
-        alert("✅ Mood saved!");
-    }
 </script>
 
 </body>
